@@ -1,3 +1,8 @@
+<?php 
+require_once 'includes/config_session.inc.php';
+require_once 'includes/login/login_view.inc.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +20,7 @@
         <div class='welcome'>Welcome to Pharmalink</div>
 
         <div class='input-fields'>
-  
+            <!-- <input type='text' placeholder='Username' class='input-line full-width'></input> -->
             <input type='email' placeholder='Email' class='input-line full-width'></input>
             <input type='password' placeholder='Password' class='input-line full-width'></input>
 
