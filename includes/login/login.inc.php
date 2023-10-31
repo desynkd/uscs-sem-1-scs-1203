@@ -1,5 +1,6 @@
 <?php
 
+//check if login is not accessed maliciously
 if ($_SERVER["REQUEST_METHOD"] === "POST")
 {
     $email = $_POST["email"];

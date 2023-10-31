@@ -23,6 +23,17 @@ function checkLoginErrors()
 
         unset($_SESSION["errors_login"]);
     }
+    else if (isset($_GET['action']) && $_GET['action'] === "unauthorized")
+    {
+        echo '<label>';
+        echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
+        echo '<div class="alert error">';
+        echo '<span class="alertClose">X</span>';
+        echo '<span class="alertText">You do not have required permissions!';
+        echo '<br class="clear"/></span>';
+        echo '</div>';
+        echo '</label>';
+    }
     else if (isset($_GET['login']) && $_GET['login'] === "success")
     {
         echo '<label>';
