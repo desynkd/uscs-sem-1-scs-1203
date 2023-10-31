@@ -54,7 +54,7 @@ function checkRegisterErrors()
         echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
         echo '<div class="alert success">';
         echo '<span class="alertClose">X</span>';
-        echo '<span class="alertText">Login Success';
+        echo '<span class="alertText">Register Success';
         echo '<br class="clear"/></span>';
         echo '</div>';
         echo '</label>';

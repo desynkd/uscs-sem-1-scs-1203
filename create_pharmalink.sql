@@ -243,3 +243,105 @@ CREATE TABLE delivery_orders (
     FOREIGN KEY (orderId)
     REFERENCES orders(orderId)
 );
+
+/*Sample data for the 'pharmacies' table*/
+INSERT INTO pharmacies (name, location) VALUES
+('ABC Pharmacy', '123 Main Street'),
+('XYZ Pharmacy', '456 Elm Street'),
+('MNO Pharmacy', '789 Oak Street');
+
+/*Sample data for the 'departments' table*/
+INSERT INTO departments (name, pharmacyId) VALUES
+('Pharmacy Department', 1),
+('Laboratory Department', 1),
+('Pharmacy Department', 2),
+('Laboratory Department', 2);
+
+/*Sample data for the 'staff' table*/
+INSERT INTO staff (contactNo, empStatus, fName, lName, address, pharmacyId) VALUES
+(1234567890, 'FULL', 'John', 'Doe', '456 Elm Street', 1),
+(9876543210, 'PART', 'Jane', 'Smith', '789 Oak Street', 2);
+
+/*Sample data for the 'department_staff' table*/
+INSERT INTO department_staff (depId, staffId, role) VALUES
+(1, 1, 'Pharmacist'),
+(2, 2, 'Lab Technician');
+
+/*Sample data for the 'sales_associates' table*/
+INSERT INTO sales_associates (staffId) VALUES
+(1),
+(2);
+
+/*Sample data for the 'ceos' table*/
+INSERT INTO ceos (associateNo, dateAssigned) VALUES
+(1, '2023-01-15'),
+(2, '2023-02-20');
+
+/*Sample data for the 'pharmacists' table*/
+INSERT INTO pharmacists (staffId, regNo, hireDate, terminationDate) VALUES
+(1, 12345, '2020-05-10', NULL),
+(2, 54321, '2019-08-15', '2022-03-30');
+
+/*Sample data for the 'chief_pharmacists' table*/
+INSERT INTO chief_pharmacists (pharmacistId, dateAssigned) VALUES
+(1, '2023-01-15');
+
+/*Sample data for the 'patients' table*/
+INSERT INTO patients (fName, lName, dob, contactNo, address) VALUES
+('Alice', 'Johnson', '1990-03-15', 987654321, '123 Pine Street'),
+('Bob', 'Smith', '1985-12-10', 123456789, '456 Maple Street');
+
+/*Sample data for the 'vital_signs' table*/
+INSERT INTO vital_signs (patientId, vitalDateTime, temperature, pulse, bloodPressure) VALUES
+(1, '2023-03-01 08:00:00', 98.6, 75, 120/80),
+(2, '2023-03-02 09:30:00', 99.2, 80, 130/70);
+
+/*Sample data for the 'diagnoses' table*/
+INSERT INTO diagnoses (patientId, symptons, name) VALUES
+(1, 'Fever, Cough', 'Common Cold'),
+(2, 'Headache, Fatigue', 'Migraine');
+
+/*Sample data for the 'diagnosis_by' table*/
+INSERT INTO diagnosis_by (diagnosisId, patientId, diagDateTime) VALUES
+(1, 1, '2023-03-01 08:30:00'),
+(2, 2, '2023-03-02 10:00:00');
+
+/*Sample data for the 'suppliers' table*/
+INSERT INTO suppliers (contactNo, address, regNo, fName, lName) VALUES
+(9876543210, '123 Supplier Street', 5678, 'Supplier', 'One'),
+(1234567890, '456 Supplier Avenue', 9876, 'Supplier', 'Two');
+
+/*Sample data for the 'products' table*/
+INSERT INTO products (supId, Name, suppliedDate, quantity, unitCost, totalCost) VALUES
+(1, 'Medicine A', '2023-03-01', 100, 10, 1000),
+(2, 'Medicine B', '2023-03-02', 200, 15, 3000);
+
+/*Sample data for the 'categories' table*/
+INSERT INTO categories (name, type) VALUES
+('Pain Relief', 'OTC'),
+('Antibiotics', 'Prescription');
+
+/*Sample data for the 'shelves' table*/
+INSERT INTO shelves (location) VALUES
+('A1'),
+('B2');
+
+/*Sample data for the 'medications' table*/
+INSERT INTO medications (productId, name, shelfId, categoryId) VALUES
+(1, 'Medicine A', 1, 1),
+(2, 'Medicine B', 2, 2);
+
+/*Sample data for the 'dispensings' table*/
+INSERT INTO dispensings (dispDateTime, pharmacistId) VALUES
+('2023-03-01 10:00:00', 1),
+('2023-03-02 11:30:00', 2);
+
+/*Sample data for the 'orders' table*/
+INSERT INTO orders (medId, dispensingId, diagnosisId, patientId, quantity, totalCost) VALUES
+(1, 1, 1, 1, 10, 100),
+(2, 2, 2, 2, 20, 300);
+
+/*Sample data for the 'delivery_orders' table*/
+INSERT INTO delivery_orders (orderId, address, deliveryDate) VALUES
+(1, '123 Main Street', '2023-03-05'),
+(2, '456 Elm Street', '2023-03-06');

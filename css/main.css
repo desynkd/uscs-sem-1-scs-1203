@@ -176,6 +176,7 @@ button:focus {
   width: 360px;
   background: #fff;
   background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
+  border-radius: 15px;
 }
 
 .window-long {
@@ -196,6 +197,28 @@ button:focus {
   width: 360px;
   background: #fff;
   background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
+  border-radius: 15px;
+}
+
+.window-large {
+  z-index: 100;
+  color: #fff;
+  font-family: roboto;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  height: 660px;
+  width: 1060px;
+  background: #fff;
+  background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
+  border-radius: 15px;
 }
 
 .overlay {
@@ -207,6 +230,7 @@ button:focus {
   position: absolute;
   width: 360px;
   z-index: 1;
+  border-radius: 15px;
 }
 
 .overlay-long {
@@ -218,6 +242,19 @@ button:focus {
   position: absolute;
   width: 360px;
   z-index: 1;
+  border-radius: 15px;
+}
+
+.overlay-large {
+  background: -webkit-linear-gradient(#006D6F, #20B2AA);
+  background: linear-gradient(#006D6F, #20B2AA);
+  opacity: 0.85;
+  filter: alpha(opacity=85);
+  height: 660px;
+  position: absolute;
+  width: 1060px;
+  z-index: 1;
+  border-radius: 15px;
 }
 
 .bold-line {
@@ -267,6 +304,52 @@ button:focus {
 .input-select option {
   background: #0a0319;
 }
+
+.display-table-container {
+  margin-top: 20px; 
+  max-height: 300px; 
+  overflow: auto;
+}
+
+.display-table {
+  border-collapse: collapse;
+  width: 100%;
+  background:transparent; 
+  border-radius: 15px; 
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.display-thead {
+  background: transparent;
+  color: #fff; 
+  font-weight: 400;
+}
+
+
+.display-tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 15px;
+}
+
+
+.display-th {
+  padding: 10px;
+  text-align: left;
+  font-weight: 400;
+}
+
+
+.display-tbody {
+  background: transparent;
+}
+
+.display-td {
+  padding: 10px;
+  text-align: left; 
+  font-weight: 300;
+  color: #fff; 
+}
+
 
 
 
