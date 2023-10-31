@@ -1,6 +1,6 @@
 <?php
 
-if ($_SESSION["REQUEST_METHOD"] === "POST")
+if ($_SERVER["REQUEST_METHOD"] === "POST")
 {
     $email = $_POST["email"];
     $pwd = $_POST["pwd"];
@@ -10,7 +10,7 @@ if ($_SESSION["REQUEST_METHOD"] === "POST")
         require_once '../dbh.inc.php';
         require_once 'login_model.inc.php';
         require_once 'login_contr.inc.php';
-        require_once 'config_session.inc.php';
+        require_once '../config_session.inc.php';
 
         //ERROR HANDLERS
         $errors = [];
@@ -39,7 +39,7 @@ if ($_SESSION["REQUEST_METHOD"] === "POST")
         {
             $_SESSION["errors_login"] = $errors;
 
-            header("Location: ../../index.php");
+            header("Location: ../../index.php?login=fail");
             die();
         }
 
@@ -49,21 +49,23 @@ if ($_SESSION["REQUEST_METHOD"] === "POST")
 
         $_SESSION["user_id"] = $result["id"];
         $_SESSION["user_username"] = htmlspecialchars($result["username"]);
+        $_SESSION["user_type"] = $result["usertype"];
 
         $_SESSION["last_regeneration"] = time();
 
-        header("Location: ../../index.php?login=success");
+        //header("Location: ../../index.php?login=success");
+        header("Location: ../../dashboard.php");
         $pdo = null;
         $stmt = null;
         die();
     } 
     catch (PDOException $e) 
     {
-        die("Query faile: " . $e->getMessage());
+        die("Query failed: " . $e->getMessage());
     }
 }
 else
 {
-    header("Location: ../../index.php");
+    header("Location: ../../index.php?login=unauthorized");
     die();
 }

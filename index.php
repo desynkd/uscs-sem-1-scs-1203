@@ -26,11 +26,11 @@ require_once 'includes/login/login_view.inc.php';
 
                 </div>
                 <div><button class='ghost-round full-width'>Login</button></div>
-            
-                <?php 
-                checkLoginErrors();
-                ?>
             </form>
+            
+            <?php 
+                checkLoginErrors();
+            ?>
         </div>
     </div>
     </div>

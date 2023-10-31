@@ -25,7 +25,6 @@ function checkLoginErrors()
     }
     else if (isset($_GET['login']) && $_GET['login'] === "success")
     {
-        echo '<br>';
-        echo '<p>Login Success!</p>';
+        header("Location: ../../dashboard.php");
     }
 }
