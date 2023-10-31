@@ -373,7 +373,7 @@ button:focus {
     padding: 10px;
     margin: 10px;
     line-height: 1.8;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: hand;
     cursor: pointer;
     font-family: sans-serif;
@@ -407,14 +407,14 @@ button:focus {
   
   .error {
     background-color: #0a0319;
-    border: 1px solid #EDD;
+    border: 1px solid rgba(255, 255, 255, 0.65);
     color: #A66;
   }
 
   .success {
     background-color: #0a0319;
-    border: 1px solid #EDD;
-    color: rgb(5, 171, 22);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    color: rgb(86, 194, 97);
   }
 
   
