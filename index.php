@@ -17,15 +17,20 @@ require_once 'includes/login/login_view.inc.php';
     <div class='window'>
         <div class='overlay'></div>
         <div class='content'>
-        <div class='welcome'>Welcome to Pharmalink</div>
+            <div class='welcome'>Welcome to Pharmalink</div>
+            <form action="includes/login/login.inc.php" method="post">
+                <div class='input-fields'>
+                    <!-- <input type='text' name="username" placeholder='Username' class='input-line full-width'></input> -->
+                    <input type='email' name="email" placeholder='Email' class='input-line full-width'></input>
+                    <input type='password' name="pwd" placeholder='Password' class='input-line full-width'></input>
 
-        <div class='input-fields'>
-            <!-- <input type='text' placeholder='Username' class='input-line full-width'></input> -->
-            <input type='email' placeholder='Email' class='input-line full-width'></input>
-            <input type='password' placeholder='Password' class='input-line full-width'></input>
-
-        </div>
-        <div><button class='ghost-round full-width'>Login</button></div>
+                </div>
+                <div><button class='ghost-round full-width'>Login</button></div>
+            </form>
+            
+            <?php 
+                checkLoginErrors();
+            ?>
         </div>
     </div>
     </div>
