@@ -20,20 +20,6 @@ require_once 'includes/view/register_view.inc.php';
             <div class='welcome'>Register New User</div>
             <form action="includes/register.inc.php" method="post">
                 <div class='input-fields'>
-                    <!-- <input type='text' name="username" placeholder='Username' class='input-line full-width'></input>
-                    <input type='email' name="email" placeholder='Email' class='input-line full-width'></input>
-                    <input type='password' name="pwd" placeholder='Password' class='input-line full-width'></input>
-                    
-                    <!--dropdown for usertypes -->
-                    <!-- <label for="id_usertype" class="input-label full-width" >User Type</label>
-                    <select name="usertype" id="id_usertype" class="input-select full-width" >
-                        <option value="admin">Admin</option>
-                        <option value="patient">Patient</option>
-                        <option value="supplier">Supplier</option>
-                        <option value="pharmacist">Pharmacist</option>
-                        <option value="sales">Sales</option>
-                    </select>  -->
-                    
                     <?php 
                         registerInput();
                     ?>
