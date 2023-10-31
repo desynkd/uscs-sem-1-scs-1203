@@ -1,6 +1,6 @@
 <?php 
 require_once 'includes/config_session.inc.php';
-require_once 'includes/register/register_view.inc.php';
+require_once 'includes/view/register_view.inc.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ require_once 'includes/register/register_view.inc.php';
         <div class='overlay-long'></div>
         <div class='content'>
             <div class='welcome'>Register New User</div>
-            <form action="includes/register/register.inc.php" method="post">
+            <form action="includes/register.inc.php" method="post">
                 <div class='input-fields'>
                     <!-- <input type='text' name="username" placeholder='Username' class='input-line full-width'></input>
                     <input type='email' name="email" placeholder='Email' class='input-line full-width'></input>

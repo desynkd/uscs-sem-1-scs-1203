@@ -1,11 +1,11 @@
 <?php
 
-require_once '../config_session.inc.php';
+require_once 'config_session.inc.php';
 
 //Check if register is done by a admin usertype
 if (!$_SESSION["user_type"] === 'admin')
 {
-    header("Location: ../../index.php?action=unauthorized");
+    header("Location: ../index.php?action=unauthorized");
     die();
 }
 
@@ -21,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     try {
         
-        require_once '../dbh.inc.php';
-        require_once 'register_model.inc.php';
-        require_once 'register_contr.inc.php';
+        require_once 'dbh.inc.php';
+        require_once 'model/register_model.inc.php';
+        require_once 'contr/register_contr.inc.php';
 
         //ERROR HANDLES
         $errors = [];
@@ -53,13 +53,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             ];
             $_SESSION["register_data"] = $registerData;
 
-            header("Location: ../../admin_user_register.php?register=fail");
+            header("Location: ../admin_user_register.php?register=fail");
             die();
         }
 
         createUser($pdo, $username, $pwd, $email, $usertype);
 
-        header("Location: ../../admin_user_register.php?signup=success");
+        header("Location: ../admin_user_register.php?signup=success");
 
         $pdo = null;
         $stmt = null;
@@ -73,6 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 }
 else
 {
-    header("Location: ../../admin_user_register.php?register=unauthorized");
+    header("Location: ../admin_user_register.php?register=unauthorized");
     die();
 }

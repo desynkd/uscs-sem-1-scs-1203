@@ -21,7 +21,7 @@ require_once 'includes/config_session.inc.php';
                 echo "<div class='welcome'>You are logged in as " . $_SESSION["user_type"] . "</div>";
             }
             ?>
-            <form action="includes/login/logout.inc.php" method="post">
+            <form action="includes/logout.inc.php" method="post">
                 <div style="padding: 20px 20px 5px;" ><button class='ghost-round full-width'>Logout</button></div>
             </form>
             <form action="admin_user_register.php" method="post">
