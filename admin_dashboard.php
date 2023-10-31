@@ -22,7 +22,10 @@ require_once 'includes/config_session.inc.php';
             }
             ?>
             <form action="includes/login/logout.inc.php" method="post">
-                <div style="padding: 20px;" ><button class='ghost-round full-width'>Logout</button></div>
+                <div style="padding: 20px 20px 5px;" ><button class='ghost-round full-width'>Logout</button></div>
+            </form>
+            <form action="admin_user_register.php" method="post">
+                <div style="padding: 5px 20px 20px;" ><button class='ghost-round full-width'>Register User</button></div>
             </form>
         </div>
     </div>

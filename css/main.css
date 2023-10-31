@@ -260,3 +260,11 @@ button:focus {
     border: 1px solid #EDD;
     color: #A66;
   }
+
+  .success {
+    background-color: #0a0319;
+    border: 1px solid #EDD;
+    color: rgb(5, 171, 22);
+  }
+
+  

@@ -53,8 +53,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 
         $_SESSION["last_regeneration"] = time();
 
+        if( $_SESSION["user_type"] === 'admin')
+        {
+            header("Location: ../../admin_dashboard.php");
+        }
+        else
+        {
+            header("Location: ../../index.php?login=success&usertype=undefined");
+        }
         //header("Location: ../../index.php?login=success");
-        header("Location: ../../dashboard.php");
+        //header("Location: ../../dashboard.php");
         $pdo = null;
         $stmt = null;
         die();

@@ -25,6 +25,13 @@ function checkLoginErrors()
     }
     else if (isset($_GET['login']) && $_GET['login'] === "success")
     {
-        header("Location: ../../dashboard.php");
+        echo '<label>';
+        echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
+        echo '<div class="alert success">';
+        echo '<span class="alertClose">X</span>';
+        echo '<span class="alertText">Login Success';
+        echo '<br class="clear"/></span>';
+        echo '</div>';
+        echo '</label>';
     }
 }
