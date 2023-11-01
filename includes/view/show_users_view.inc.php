@@ -88,7 +88,7 @@ function deactivateUser()
 
 function activateUser()
 {
-    echo 'div class="subtitle" style="float: left;">';
+    echo '<div class="subtitle" style="float: left;">';
     echo 'Activate a User';
     echo '<input type="text" name="userid" placeholder="UserID" class="input-line" style="margin: 0px 10px 0px;"></input>';
     echo '</div>';
@@ -121,6 +121,15 @@ function checkShowUserErrors()
         echo '<div class="alert success">';
         echo '<span class="alertClose">X</span>';
         echo '<span class="alertText">User Deactivated!';
+        echo '<br class="clear"/></span>';
+        echo '</div>';
+        echo '</label>';
+    } else if (isset($_GET["activation"]) && $_GET["activation"] === "success" ) {
+        echo '<label>';
+        echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
+        echo '<div class="alert success">';
+        echo '<span class="alertClose">X</span>';
+        echo '<span class="alertText">User Activated!';
         echo '<br class="clear"/></span>';
         echo '</div>';
         echo '</label>';

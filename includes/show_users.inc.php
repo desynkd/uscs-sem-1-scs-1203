@@ -7,6 +7,7 @@ if (!$_SESSION["user_type"] == 'admin')
     header("Location: ../index.php?action=unauthorized");
     die();
 }
+
 if (isset($_GET['update']) && $_GET['update'] === "true")
 {
     $doUpdate = 1;
@@ -15,13 +16,21 @@ else
 {
     $doUpdate = 0;
 }
+
 if (isset($_GET['action']) && $_GET['action'] === "deactivate")
 {
     $doDeactivate = 1;
+    $doActivate = 0;
+}
+else if (isset($_GET['action']) && $_GET['action'] === "activate")
+{
+    $doDeactivate = 0;
+    $doActivate = 1;
 }
 else
 {
     $doDeactivate = 0;
+    $doActivate = 0;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -49,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         require_once 'contr/show_users_contr.inc.php';
 
         //ERROR HANDLES FOR DEACTIVATE USER
-        if ($doDeactivate == 1)
+        if ($doDeactivate == 1 || $doActivate == 1)
         {
             $userid = $_POST["userid"];
             $errors = [];
@@ -63,20 +72,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             if (!$isUserValid) {
                 $errors["user_invalid"] = "UserId Invalid!";
             }
-            if ($isUserValid && !isUserIdActive($pdo, $userid))
+            if ($isUserValid)
             {
-                $errors["user_inactive"] = "User already Inactive";
+                $isUserActive = isUserIdActive($pdo, $userid);
+                if ($doDeactivate == 1 && !$isUserActive)
+                {
+                    $errors["user_inactive"] = "User already Inactive";
+                }
+                else if ($doActivate == 1 && $isUserActive)
+                {
+                    $errors["user_active"] = "User already Active";
+                }
             }
     
             if($errors)
             {
                 $_SESSION["error_showusers"] = $errors;
                 $locationAddDeactivate = NULL;
+                $locationAddActivate = NULL;
             }
             else
             {
-                userstatusChange($pdo, $userid, 0);
-                $locationAddDeactivate = "&deactivation=success";
+                if ($doDeactivate == 1)
+                {
+                    userstatusChange($pdo, $userid, 0);
+                    $locationAddDeactivate = "&deactivation=success";
+                    $locationAddActivate = NULL;
+                }
+                else if ($doActivate == 1)
+                {
+                    userstatusChange($pdo, $userid, 1);
+                    $locationAddActivate = "&activation=success";
+                    $locationAddDeactivate = NULL;
+                }
             }
         }
 
@@ -114,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 $locationAddUpdate = "update=success&filter=default";
             }
             
-            header("Location: ../admin_show_users.php?". $locationAddUpdate . $locationAddDeactivate);
+            header("Location: ../admin_show_users.php?". $locationAddUpdate . $locationAddDeactivate . $locationAddActivate);
             //unset($_SESSION["do_update"]);
             die();
         }
