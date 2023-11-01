@@ -27,6 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 
         $result = getUser($pdo, $email);
 
+        if (!empty($result))
+        {
+            if (!isUserActive($result["userstatus"]))
+            {
+                $errors["user_inactive"] = "User is no longer active!";
+            }
+        }
         if (!isEmailCorrect($result))
         {
             $errors["email_incorrect"] = "Incorrect Email!";

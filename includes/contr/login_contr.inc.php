@@ -57,3 +57,17 @@ function isPasswordCorrect(string $pwd, string $hashedPwd)
         return false;
     }
 }
+
+function isUserActive(string $userstatus)
+{
+    //INPUT: Array or bool result variable
+    //OUTPUT: True if result bool isnt false and false if else
+    if ($userstatus == '1')
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

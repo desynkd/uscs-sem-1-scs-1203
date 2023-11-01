@@ -31,8 +31,8 @@ function registerInput()
 
 function checkRegisterErrors()
 {
-    if (isset($_SESSION['errors_register'])) {
-        $errors = $_SESSION['errors_register'];
+    if (isset($_SESSION['error_register'])) {
+        $errors = $_SESSION['error_register'];
 
         echo "<br>";
 
@@ -48,7 +48,7 @@ function checkRegisterErrors()
             echo '</label>';
         }
 
-        unset($_SESSION['errors_register']);
+        unset($_SESSION['error_register']);
     } else if (isset($_GET["signup"]) && $_GET["signup"] === "success" ) {
         echo '<label>';
         echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';

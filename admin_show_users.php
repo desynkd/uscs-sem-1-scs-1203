@@ -1,34 +1,10 @@
 <?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-    //$username = $_SESSION["user_username"];
-    
-    try {
-        require_once "includes/dbh.inc.php";
-
-        $query = "SELECT id, usertype, username, email, createdAt FROM sys_users";
-
-        $stmt = $pdo->prepare($query);
-        $stmt->execute();
-
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $pdo = null;
-        $stmt = null;
-
-        //die();
-    }
-    catch (PDOException $e) 
+    require_once 'includes/config_session.inc.php';
+    require_once 'includes/view/show_users_view.inc.php';
+    if (isset($_GET['action']) && $_GET['action'] === "load")
     {
-        die("Query failed: " . $e->getMessage());
+        include 'includes/show_users.inc.php';
     }
-}
-else
-{
-    header("Location: admin_dashboard.php?action=unauthorized");
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -47,42 +23,47 @@ else
     <div class='window-large'>
         <div class='overlay-large'></div>
         <div class='content'>
-            <div class='welcome'>Displaying all users in system</div>
-            
-            <?php 
-            if (empty($results))
-            {
-                echo '<label>';
-                echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
-                echo '<div class="alert error">';
-                echo '<span class="alertClose">X</span>';
-                echo '<span class="alertText"> No Results!';
-                echo '<br class="clear"/></span>';
-                echo '</div>';
-                echo '</label>';
-            }
-            else
-            { ?>
-                <div class="display-table-container">
-                <table class="display-table">
-                <thead class="display-thead">
-                    <tr class="display-tr">
-                    <th class="display-th"><?php echo implode('</th><th class="display-th">', array_keys(current($results))); ?></th>
-                    </tr>
-                </thead>
-                <tbody class="display-tbody">
-                <?php foreach ($results as $row): array_map('htmlentities', $row); ?>
-                    <tr class="display-tr">
-                    <td class="display-td"><?php echo implode('</td><td class="display-td">', $row); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-                </table>
+            <div class="welcome"> Display Users</div>            
+
+            <form action="includes/show_users.inc.php?update=true" method="post">
+                <div class='input-fields'>
+                    <?php
+                        if (isset($_GET['action']) && $_GET['action'] === "load")
+                        {
+                            filterInputs(0);
+                        } 
+                        else
+                        {
+                            filterInputs(1);
+                        }
+                    ?>
                 </div>
-            <?php }
+            </form>
+
+            <div><?php displayRecords(); ?></div>
+
+            <form action="includes/show_users.inc.php?action=deactivate&update=true" method="post">
+                <div class='input-fields'>
+                    <?php
+                        deactivateUser();
+                    ?>
+                </div>
+            </form>
+
+            <form action="includes/show_users.inc.php?action=activate&update=true" method="post">
+                <div class='input-fields'>
+                    <?php
+                        activateUser();
+                    ?>
+                </div>
+            </form>
+
+            <form action="admin_dashboard.php" method="post">
+                <div style="padding: 5px 20px 20px;" ><button class='ghost-round full-width'>Return to Dashboard</button></div>
+            </form>
+            <?php 
+                checkShowUserErrors();
             ?>
-
-
         </div>
     </div>
     </div>
