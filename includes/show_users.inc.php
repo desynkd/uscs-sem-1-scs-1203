@@ -15,6 +15,14 @@ else
 {
     $doUpdate = 0;
 }
+if (isset($_GET['action']) && $_GET['action'] === "deactivate")
+{
+    $doDeactivate = 1;
+}
+else
+{
+    $doDeactivate = 0;
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -40,6 +48,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         require_once 'model/show_users_model.inc.php';
         require_once 'contr/show_users_contr.inc.php';
 
+        //ERROR HANDLES FOR DEACTIVATE USER
+        if ($doDeactivate == 1)
+        {
+            $userid = $_POST["userid"];
+            $errors = [];
+
+            if (isUserIdEmpty($userid))
+            {
+                $errors["empty_userid"] = "Fill UserId!";
+            }
+
+            $isUserValid = isUserIdValid($pdo, $userid);
+            if (!$isUserValid) {
+                $errors["user_invalid"] = "UserId Invalid!";
+            }
+            if ($isUserValid && !isUserIdActive($pdo, $userid))
+            {
+                $errors["user_inactive"] = "User already Inactive";
+            }
+    
+            if($errors)
+            {
+                $_SESSION["error_showusers"] = $errors;
+                $locationAddDeactivate = NULL;
+            }
+            else
+            {
+                userstatusChange($pdo, $userid, 0);
+                $locationAddDeactivate = "&deactivation=success";
+            }
+        }
+
         if (empty($showActive) && !empty($showInactive))
         {
             $_SESSION["show_results"] = createRecords($pdo, 0);
@@ -60,17 +100,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
             if (empty($showActive) && !empty($showInactive))
             {
-                header("Location: ../admin_show_users.php?update=success&filter=positive");
+                //header("Location: ../admin_show_users.php?update=success&filter=positive");
+                $locationAddUpdate = "update=success&filter=positive";
             }
             else if (!empty($showActive) && !empty($showInactive))
             {
-                header("Location: ../admin_show_users.php?update=success&filter=negative");
+                //header("Location: ../admin_show_users.php?update=success&filter=negative");
+                $locationAddUpdate = "update=success&filter=negative";
             }
             else
             {
-                header("Location: ../admin_show_users.php?update=success&filter=default");
+                //header("Location: ../admin_show_users.php?update=success&filter=default");
+                $locationAddUpdate = "update=success&filter=default";
             }
             
+            header("Location: ../admin_show_users.php?". $locationAddUpdate . $locationAddDeactivate);
             //unset($_SESSION["do_update"]);
             die();
         }

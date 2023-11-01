@@ -75,3 +75,54 @@ function displayRecords()
     <?php
     }
 }
+
+function deactivateUser()
+{
+    echo '<div class="subtitle" style="float: left;">';
+    echo 'Deactivate a User';
+    echo '<input type="text" name="userid" placeholder="UserID" class="input-line" style="margin: 0px 10px 0px;"></input>';
+    echo '</div>';
+    echo '<div style="float: right;"><button class="ghost-round">Deactivate User</button></div>';
+
+}
+
+function activateUser()
+{
+    echo 'div class="subtitle" style="float: left;">';
+    echo 'Activate a User';
+    echo '<input type="text" name="userid" placeholder="UserID" class="input-line" style="margin: 0px 10px 0px;"></input>';
+    echo '</div>';
+    echo '<div style="float: right;"><button class="ghost-round">Activate User</button></div>';
+}
+
+function checkShowUserErrors()
+{
+    if (isset($_SESSION['error_showusers'])) {
+        $errors = $_SESSION['error_showusers'];
+
+        echo "<br>";
+
+        foreach($errors as $error)
+        {
+            echo '<label>';
+            echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
+            echo '<div class="alert error">';
+            echo '<span class="alertClose">X</span>';
+            echo '<span class="alertText">' . $error;
+            echo '<br class="clear"/></span>';
+            echo '</div>';
+            echo '</label>';
+        }
+
+        unset($_SESSION['error_showusers']);
+    } else if (isset($_GET["deactivation"]) && $_GET["deactivation"] === "success" ) {
+        echo '<label>';
+        echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
+        echo '<div class="alert success">';
+        echo '<span class="alertClose">X</span>';
+        echo '<span class="alertText">User Deactivated!';
+        echo '<br class="clear"/></span>';
+        echo '</div>';
+        echo '</label>';
+    }
+}
