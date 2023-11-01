@@ -1,34 +1,7 @@
 <?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-    //$username = $_SESSION["user_username"];
-    
-    try {
-        require_once "includes/dbh.inc.php";
-
-        $query = "SELECT id, usertype, username, email, createdAt FROM sys_users";
-
-        $stmt = $pdo->prepare($query);
-        $stmt->execute();
-
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $pdo = null;
-        $stmt = null;
-
-        //die();
-    }
-    catch (PDOException $e) 
-    {
-        die("Query failed: " . $e->getMessage());
-    }
-}
-else
-{
-    header("Location: admin_dashboard.php?action=unauthorized");
-}
-
+    require_once 'includes/config_session.inc.php';
+    require_once 'includes/view/show_users_view.inc.php';
+    include 'includes/show_users.inc.php';
 ?>
 
 <!DOCTYPE html>
@@ -49,39 +22,9 @@ else
         <div class='content'>
             <div class='welcome'>Displaying all users in system</div>
             
-            <?php 
-            if (empty($results))
-            {
-                echo '<label>';
-                echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
-                echo '<div class="alert error">';
-                echo '<span class="alertClose">X</span>';
-                echo '<span class="alertText"> No Results!';
-                echo '<br class="clear"/></span>';
-                echo '</div>';
-                echo '</label>';
-            }
-            else
-            { ?>
-                <div class="display-table-container">
-                <table class="display-table">
-                <thead class="display-thead">
-                    <tr class="display-tr">
-                    <th class="display-th"><?php echo implode('</th><th class="display-th">', array_keys(current($results))); ?></th>
-                    </tr>
-                </thead>
-                <tbody class="display-tbody">
-                <?php foreach ($results as $row): array_map('htmlentities', $row); ?>
-                    <tr class="display-tr">
-                    <td class="display-td"><?php echo implode('</td><td class="display-td">', $row); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-                </table>
-                </div>
-            <?php }
+            <?php
+            displayRecords();
             ?>
-
 
         </div>
     </div>

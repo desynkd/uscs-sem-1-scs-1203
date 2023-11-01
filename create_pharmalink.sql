@@ -5,6 +5,7 @@ CREATE TABLE sys_users (
     pwd VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL,
     createdAt DATETIME NOT NULL DEFAULT CURRENT_TIME,
+    userstatus INT(1) NOT NULL DEFAULT 1,
     PRIMARY KEY (id)
 );
 
