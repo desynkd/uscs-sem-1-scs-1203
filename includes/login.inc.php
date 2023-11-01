@@ -1,5 +1,6 @@
 <?php
 
+//check if login is not accessed maliciously
 if ($_SERVER["REQUEST_METHOD"] === "POST")
 {
     $email = $_POST["email"];
@@ -7,10 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 
     try
     {
-        require_once '../dbh.inc.php';
-        require_once 'login_model.inc.php';
-        require_once 'login_contr.inc.php';
-        require_once '../config_session.inc.php';
+        require_once 'dbh.inc.php';
+        require_once 'model/login_model.inc.php';
+        require_once 'contr/login_contr.inc.php';
+        require_once 'config_session.inc.php';
 
         //ERROR HANDLERS
         $errors = [];
@@ -39,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
         {
             $_SESSION["errors_login"] = $errors;
 
-            header("Location: ../../index.php?login=fail");
+            header("Location: ../index.php?login=fail");
             die();
         }
 
@@ -53,8 +54,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 
         $_SESSION["last_regeneration"] = time();
 
+        if( $_SESSION["user_type"] === 'admin')
+        {
+            header("Location: ../admin_dashboard.php");
+        }
+        else
+        {
+            header("Location: ../index.php?login=success&usertype=undefined");
+        }
         //header("Location: ../../index.php?login=success");
-        header("Location: ../../dashboard.php");
+        //header("Location: ../../dashboard.php");
         $pdo = null;
         $stmt = null;
         die();
@@ -66,6 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 }
 else
 {
-    header("Location: ../../index.php?login=unauthorized");
+    header("Location: ../index.php?login=unauthorized");
     die();
 }

@@ -176,6 +176,49 @@ button:focus {
   width: 360px;
   background: #fff;
   background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
+  border-radius: 15px;
+}
+
+.window-long {
+  z-index: 100;
+  color: #fff;
+  font-family: roboto;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  height: 660px;
+  width: 360px;
+  background: #fff;
+  background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
+  border-radius: 15px;
+}
+
+.window-large {
+  z-index: 100;
+  color: #fff;
+  font-family: roboto;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  height: 660px;
+  width: 1060px;
+  background: #fff;
+  background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
+  border-radius: 15px;
 }
 
 .overlay {
@@ -187,6 +230,31 @@ button:focus {
   position: absolute;
   width: 360px;
   z-index: 1;
+  border-radius: 15px;
+}
+
+.overlay-long {
+  background: -webkit-linear-gradient(#006D6F, #20B2AA);
+  background: linear-gradient(#006D6F, #20B2AA);
+  opacity: 0.85;
+  filter: alpha(opacity=85);
+  height: 660px;
+  position: absolute;
+  width: 360px;
+  z-index: 1;
+  border-radius: 15px;
+}
+
+.overlay-large {
+  background: -webkit-linear-gradient(#006D6F, #20B2AA);
+  background: linear-gradient(#006D6F, #20B2AA);
+  opacity: 0.85;
+  filter: alpha(opacity=85);
+  height: 660px;
+  position: absolute;
+  width: 1060px;
+  z-index: 1;
+  border-radius: 15px;
 }
 
 .bold-line {
@@ -202,6 +270,88 @@ button:focus {
     background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') left no-repeat;
   background-size:cover;
 }
+
+/* Label Styles */
+.input-label {
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Select Styles */
+.input-select {
+  background: none;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 25px;
+  line-height: 2.4em;
+  padding: 10px;
+  width: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  margin-bottom: 20px; /* Add margin-bottom to create spacing with content below */
+}
+
+.input-select:focus {
+  outline: none;
+  border-color: #fff;
+}
+.input-select option {
+  background: #0a0319;
+}
+
+.display-table-container {
+  margin-top: 20px; 
+  max-height: 300px; 
+  overflow: auto;
+}
+
+.display-table {
+  border-collapse: collapse;
+  width: 100%;
+  background:transparent; 
+  border-radius: 15px; 
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.display-thead {
+  background: transparent;
+  color: #fff; 
+  font-weight: 400;
+}
+
+
+.display-tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 15px;
+}
+
+
+.display-th {
+  padding: 10px;
+  text-align: left;
+  font-weight: 400;
+}
+
+
+.display-tbody {
+  background: transparent;
+}
+
+.display-td {
+  padding: 10px;
+  text-align: left; 
+  font-weight: 300;
+  color: #fff; 
+}
+
+
+
 
 @media (max-width: 500px) {
   .window {
@@ -223,7 +373,7 @@ button:focus {
     padding: 10px;
     margin: 10px;
     line-height: 1.8;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: hand;
     cursor: pointer;
     font-family: sans-serif;
@@ -257,6 +407,14 @@ button:focus {
   
   .error {
     background-color: #0a0319;
-    border: 1px solid #EDD;
+    border: 1px solid rgba(255, 255, 255, 0.65);
     color: #A66;
   }
+
+  .success {
+    background-color: #0a0319;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    color: rgb(86, 194, 97);
+  }
+
+  
