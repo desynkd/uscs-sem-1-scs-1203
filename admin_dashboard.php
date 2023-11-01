@@ -27,7 +27,7 @@ require_once 'includes/config_session.inc.php';
             <form action="admin_user_register.php" method="post">
                 <div style="padding: 5px 20px 20px;" ><button class='ghost-round full-width'>Register User</button></div>
             </form>
-            <form action="admin_show_users.php" method="post">
+            <form action="admin_show_users.php?action=load" method="post">
                 <div style="padding: 5px 20px 20px;" ><button class='ghost-round full-width'>Display Current Users</button></div>
             </form>
         </div>
