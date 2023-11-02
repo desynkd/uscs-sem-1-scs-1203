@@ -14,9 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $termdate = $_POST["termdate"];
     $empstatus = $_POST["empstatus"];
 
-    $username =  $_SESSION["create_username"];
-    $pwd =  $_SESSION["create_pwd"];
-    $email =  $_SESSION["create_email"];
+    $username = $_SESSION["create_username"];
+    $pwd = $_SESSION["create_pwd"];
+    $email = $_SESSION["create_email"];
     $usertype = "pharmacist";
 
 
@@ -67,7 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         }
 
         createUser($pdo, $username, $pwd, $email, $usertype);
-        createPharmacist($pdo, $firstname, $lastname, $address, $contactno, $regno, $hiredate, $termdate, $empstatus);
+        $staffid = createPharmacist($pdo, $firstname, $lastname, $address, $contactno, $regno, $hiredate, $termdate, $empstatus);
+        createPharmAccount($pdo, $username, $staffid);
 
         header("Location: ../admin_user_register.php?signup=success");
 

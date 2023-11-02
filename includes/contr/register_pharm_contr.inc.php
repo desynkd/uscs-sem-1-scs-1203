@@ -68,6 +68,15 @@ function createPharmacist(object $pdo, string $firstname, string $lastname, stri
     //INPUT: php data object, firstname, lastname, address, contactno, regno, hiredate, termdate, empstatus
     //PROCESS: Instruct model to create new pharmacist in pharmacist
     setStaff($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
-    $staffId = getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
-    setPharmacist($pdo, $staffId, $regno, $hiredate, $termdate);
+    $staffid = (string)getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
+    setPharmacist($pdo, $staffid, $regno, $hiredate, $termdate);
+    return $staffid;
+}
+
+function createPharmAccount(object $pdo, string $username, string $staffid)
+{
+    //INPUT: php data object, username, staffid
+    //PROCESS: Instruct model to create new pharmacist in pharmacist
+    $userid = (string)getUserId($pdo, $username);
+    setAccount($pdo, $userid, $staffid, NULL, NULL);
 }

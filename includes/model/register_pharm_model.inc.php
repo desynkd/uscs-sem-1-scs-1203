@@ -7,8 +7,8 @@ function setStaff(object $pdo, string $firstname, string $lastname, string $addr
     //INPUT: php data object, firstname, lastname, address, contactno, empstatus, pharmacyid
     //PROCESS: Create new staff memeber in staff
 
-    $query = "INSERT INTO staff (fname, lname, address, contactNo, empStatus, pharmacyId) VALUES 
-    (:firstname, :lastname, :staffaddress, :contactNo, :empstatus, :pharamcyid)";
+    $query = "INSERT INTO staff (fName, lName, address, contactNo, empStatus, pharmacyId) VALUES 
+    (:firstname, :lastname, :staffaddress, :contactno, :empstatus, :pharmacyid);";
     $stmt = $pdo->prepare($query);
 
     $stmt->bindParam(":firstname", $firstname);
@@ -24,7 +24,7 @@ function getStaffId($pdo, string $firstname, string $lastname, string $address, 
     //INPUT: php data object and string firstname, lastname, address, contactno, empstatus
     //OUTPUT: staffid if present and bool false if not
 
-    $query = "SELECT staffId FROM staff WHERE fname = :firstname AND AND lName = :lastname AND address = :useraddress AND contactNo = :contactno AND empStatus = :empstatus AND pharmacyId = :pharmacyid;";
+    $query = "SELECT staffId FROM staff WHERE fName = :firstname AND lName = :lastname AND address = :useraddress AND contactNo = :contactno AND empStatus = :empstatus AND pharmacyId = :pharmacyid;";
     $stmt = $pdo->prepare($query);
 
     $stmt->bindParam(":firstname", $firstname);
@@ -36,7 +36,7 @@ function getStaffId($pdo, string $firstname, string $lastname, string $address, 
     $stmt->execute();
 
     $result = $stmt->fetch(PDO :: FETCH_ASSOC);
-    return $result[0]['staffId'];
+    return $result['staffId'];
 }
 
 function setPharmacist(object $pdo, string $staffid, string $regno, string $hiredate, string $termdate)
@@ -45,7 +45,7 @@ function setPharmacist(object $pdo, string $staffid, string $regno, string $hire
     //PROCESS: Create new user in sys_users
 
     $query = "INSERT INTO pharmacists (staffId, regNo, hireDate, terminationDate) VALUES 
-    (:staffid, :regno, :hiredate, :termdate)";
+    (:staffid, :regno, :hiredate, :termdate);";
     $stmt = $pdo->prepare($query);
 
     $stmt->bindParam(":staffid", $staffid);
