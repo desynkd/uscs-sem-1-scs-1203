@@ -21,8 +21,11 @@ require_once 'includes/config_session.inc.php';
                 echo "<div class='subtitle'>You are logged in as " . $_SESSION["user_type"] . "</div>";
             ?>
 
+            <form action="pharm_profile.php" method="post">
+                <div style="padding: 30px 10px 5px;" ><button class='ghost-round full-width'>View Profile</button></div>
+            </form>
             <form action="includes/logout.inc.php" method="post">
-                <div style="padding: 20px 10px 10px;" ><button class='ghost-round full-width'>Logout</button></div>
+                <div style="padding: 5px 10px 10px;" ><button class='ghost-round full-width'>Logout</button></div>
             </form>
         </div>
     </div>
