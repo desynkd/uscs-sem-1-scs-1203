@@ -3,7 +3,8 @@
 //check if login is not accessed maliciously
 if ($_SERVER["REQUEST_METHOD"] === "POST")
 {
-    $email = $_POST["email"];
+    //$email = $_POST["email"];
+    $username = $_POST["username"];
     $pwd = $_POST["pwd"];
 
     try
@@ -16,16 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
         //ERROR HANDLERS
         $errors = [];
 
-        if (isInputEmpty($email, $pwd)) 
+        if (isInputEmpty($username, $pwd)) 
         {
             $errors["empty_input"] = "Fill all fields!";
         }
-        if (!isEmailValid($email))
-        {
-            $errors["email_invalid"] = "Invalid Email!";
-        }
 
-        $result = getUser($pdo, $email);
+        $result = getUser($pdo, $username);
 
         if (!empty($result))
         {
@@ -34,11 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
                 $errors["user_inactive"] = "User is no longer active!";
             }
         }
-        if (!isEmailCorrect($result))
+        if (!isUsernameCorrect($result))
         {
-            $errors["email_incorrect"] = "Incorrect Email!";
+            $errors["username_incorrect"] = "Incorrect Username!";
         }
-        if (isEmailCorrect($result) && !isPasswordCorrect($pwd, $result["pwd"]))
+        if (isUsernameCorrect($result) && !isPasswordCorrect($pwd, $result["pwd"]))
         {
             $errors["password_incorrect"] = "Incorrect Password!";
         }
@@ -61,10 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 
         $_SESSION["last_regeneration"] = time();
 
-        if( $_SESSION["user_type"] === 'admin')
+        if( $_SESSION["user_type"] === 'admin' )
         {
             header("Location: ../admin_dashboard.php");
         }
+        else if ( $_SESSION["user_type"] === 'pharmacist' )
+        {
+            header("Location: ../pharm_dashboard.php");
+        } 
         else
         {
             header("Location: ../index.php?login=success&usertype=undefined");

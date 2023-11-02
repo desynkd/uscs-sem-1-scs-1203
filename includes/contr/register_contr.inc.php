@@ -27,10 +27,10 @@ function isEmailValid (string $email)
     }
 }
 
-function isUsernameTaken(object $pdo, string $username, string $usertype) {
+function isUsernameTaken(object $pdo, string $username) {
     //INPUT: php data object and string username and usertype
     //OUTPUT: True if email with usertype already in database
-    if (getUsername($pdo, $username, $usertype)) {
+    if (getUsername($pdo, $username)) {
         return true;
     }
     else{

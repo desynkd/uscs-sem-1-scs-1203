@@ -20,8 +20,8 @@ require_once 'includes/view/login_view.inc.php';
             <div class='welcome'>Welcome to Pharmalink</div>
             <form action="includes/login.inc.php" method="post">
                 <div class='input-fields'>
-                    <!-- <input type='text' name="username" placeholder='Username' class='input-line full-width'></input> -->
-                    <input type='email' name="email" placeholder='Email' class='input-line full-width'></input>
+                    <input type='text' name="username" placeholder='Username' class='input-line full-width'></input>
+                    <!-- <input type='email' name="email" placeholder='Email' class='input-line full-width'></input> -->
                     <input type='password' name="pwd" placeholder='Password' class='input-line full-width'></input>
 
                 </div>

@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-function getUsername(object $pdo, string $username, string $usertype) {
+function getUsername(object $pdo, string $username) {
     //INPUT: php data object and string email and string usertype
     //OUTPUT: array of username if present and
     //          bool false if not
 
-    $query = "SELECT username FROM sys_users WHERE username = :username AND usertype = :usertype;";
+    $query = "SELECT username FROM sys_users WHERE username = :username;";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":username", $username);
-    $stmt->bindParam(":usertype", $usertype);
     $stmt->execute();
  
     $result = $stmt->fetch(PDO :: FETCH_ASSOC);

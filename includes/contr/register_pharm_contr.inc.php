@@ -1,0 +1,73 @@
+<?php
+
+declare(strict_types=1);
+
+function isInputEmpty(string $firstname, string $address, string $contactno, string $regno, string $hiredate, string $termdate)
+{
+    //INPUT: string firstname, lastname, address, contactno, regno, hiredate, termdate
+    //OUTPUT: True if even one is empty or false if else
+    if (empty($firstname) || empty($address) || empty($contactno)) {
+        return true;
+    }
+    else if (empty($regno) || empty($hiredate) || empty($termdate))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function isContactNoValid (string $contactNo)
+{
+    //INPUT : ContactNo variable
+    //OUTPUT : True if contactNo is valid and false if else
+    if (is_numeric($contactNo) && strlen($contactNo) == 10 ) 
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function isRegNoValid (string $regNo)
+{
+    //INPUT : RegNo variable
+    //OUTPUT : True if RegNo is valid and false if else
+    if (strlen($regNo) == 10 ) 
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function isDatePassed(string $inputDate)
+{
+    //INPUT : Date string variable
+    //OUTPUT : True if inputdate is larger than current date and false if else
+    $currentDate = date("Y-m-d"); 
+
+    if ($currentDate < $inputDate) 
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function createPharmacist(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $regno, string $hiredate, string $termdate, string $empstatus)
+{
+    //INPUT: php data object, firstname, lastname, address, contactno, regno, hiredate, termdate, empstatus
+    //PROCESS: Instruct model to create new pharmacist in pharmacist
+    setStaff($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
+    $staffId = getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus);
+    setPharmacist($pdo,$staffId, $regno, $hiredate, $termdate);
+}

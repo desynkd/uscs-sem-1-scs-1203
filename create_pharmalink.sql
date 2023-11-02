@@ -35,11 +35,11 @@ CREATE TABLE departments (
 
 CREATE TABLE staff (
     staffId INT(10) NOT NULL AUTO_INCREMENT,
-    contactNo INT(10) NOT NULL,
-    empStatus VARCHAR(4) NOT NULL,/*FULL or PART*/
     fName VARCHAR(50) NOT NULL,
     lName VARCHAR(50),
     address VARCHAR(255) NOT NULL,
+    contactNo INT(10) NOT NULL,
+    empStatus VARCHAR(4) NOT NULL,/*FULL or PART*/
     pharmacyId INT(5) NOT NULL,
     PRIMARY KEY(staffId),
     CONSTRAINT FK_StaffPharmacy
@@ -245,11 +245,31 @@ CREATE TABLE delivery_orders (
     REFERENCES orders(orderId)
 );
 
-/*Sample data for the 'pharmacies' table*/
+CREATE TABLE sys_accounts (
+    id INT(11) NOT NULL,
+    staffId INT(10),
+    supId INT(10),
+    patientId INT(10),
+    PRIMARY KEY (id),
+    CONSTRAINT FK_AccountUser
+    FOREIGN KEY (id)
+    REFERENCES sys_users(id),
+    CONSTRAINT FK_AccountStaff
+    FOREIGN KEY (staffId)
+    REFERENCES staff(staffId),
+    CONSTRAINT FK_AccountSupplier
+    FOREIGN KEY (supId)
+    REFERENCES suppliers(supId),
+    CONSTRAINT FK_AccountPatient
+    FOREIGN KEY (patientId)
+    REFERENCES patients(patientId)
+);
+
+INSERT INTO sys_accounts (id)
+SELECT id FROM sys_users WHERE username = 'useradmin';
+
 INSERT INTO pharmacies (name, location) VALUES
-('ABC Pharmacy', '123 Main Street'),
-('XYZ Pharmacy', '456 Elm Street'),
-('MNO Pharmacy', '789 Oak Street');
+('Millenial Pharmacy', '123 Main Street');
 
 /*Sample data for the 'departments' table*/
 INSERT INTO departments (name, pharmacyId) VALUES
@@ -346,3 +366,4 @@ INSERT INTO orders (medId, dispensingId, diagnosisId, patientId, quantity, total
 INSERT INTO delivery_orders (orderId, address, deliveryDate) VALUES
 (1, '123 Main Street', '2023-03-05'),
 (2, '456 Elm Street', '2023-03-06');
+
