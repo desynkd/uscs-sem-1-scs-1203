@@ -103,7 +103,7 @@ CREATE TABLE patients (
     patientId INT(10) NOT NULL AUTO_INCREMENT,
     fName VARCHAR(50) NOT NULL,
     lName VARCHAR(50),
-    dob DATETIME NOT NULL,
+    dob DATE NOT NULL,
     contactNo INT(10) NOT NULL,
     address VARCHAR(255) NOT NULL,
     PRIMARY KEY (patientId)

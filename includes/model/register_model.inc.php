@@ -37,7 +37,7 @@ function setUser(object $pdo, string $username, string $pwd, string $email, stri
     //PROCESS: Create new user in sys_users
 
     $query = "INSERT INTO sys_users (username, usertype, pwd, email) VALUES 
-    (:username, :usertype, :pwd, :email)";
+    (:username, :usertype, :pwd, :email);";
     $stmt = $pdo->prepare($query);
 
     $options = [

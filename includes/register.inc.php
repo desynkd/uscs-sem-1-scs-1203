@@ -63,12 +63,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             createAdminAccount($pdo, $username);
             header("Location: ../admin_user_register.php?signup=success");
         }
-        else if ($usertype = 'pharmacist')
+        else if ($usertype == 'pharmacist')
         {
             $_SESSION["create_username"] = $username;
             $_SESSION["create_pwd"] = $pwd;
             $_SESSION["create_email"] = $email;
             header("Location: ../admin_register_pharm.php");
+        }
+        else if ($usertype == 'patient')
+        {
+            $_SESSION["create_username"] = $username;
+            $_SESSION["create_pwd"] = $pwd;
+            $_SESSION["create_email"] = $email;
+            header("Location: ../admin_register_patient.php");
+        }
+        else if ($usertype == 'sales')
+        {
+            $_SESSION["create_username"] = $username;
+            $_SESSION["create_pwd"] = $pwd;
+            $_SESSION["create_email"] = $email;
+            header("Location: ../admin_register_sales.php");
+        }
+        else if ($usertype == 'supplier')
+        {
+            $_SESSION["create_username"] = $username;
+            $_SESSION["create_pwd"] = $pwd;
+            $_SESSION["create_email"] = $email;
+            header("Location: ../admin_register_sup.php");
+        }
+        else
+        {
+            header("Location: ../admin_user_register.php?register=unidentified");
         }
 
         $pdo = null;

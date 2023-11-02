@@ -59,4 +59,24 @@ function checkRegisterErrors()
         echo '</div>';
         echo '</label>';
     }
+    else if (isset($_GET["register"]) && $_GET["register"] === "unidentified" ) {
+        echo '<label>';
+        echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
+        echo '<div class="alert error">';
+        echo '<span class="alertClose">X</span>';
+        echo '<span class="alertText">Unidentified Registration Type';
+        echo '<br class="clear"/></span>';
+        echo '</div>';
+        echo '</label>';
+    }  
+    else if (isset($_GET["register"]) && $_GET["register"] === "unauthorized" ) {
+        echo '<label>';
+        echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
+        echo '<div class="alert error">';
+        echo '<span class="alertClose">X</span>';
+        echo '<span class="alertText">Invalid Registration Permissions';
+        echo '<br class="clear"/></span>';
+        echo '</div>';
+        echo '</label>';
+    } 
 }
