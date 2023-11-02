@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
             $errors["invalid_email"] = "Invalid Email used!";
         }
-        if (isUsernameTaken($pdo, $username, $usertype)) {
+        if (isUsernameTaken($pdo, $username)) {
             $errors["username_used"] = "Username already taken!";
         }
         if (isEmailRegistered($pdo, $email, $usertype)) {
@@ -57,9 +57,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             die();
         }
 
-        createUser($pdo, $username, $pwd, $email, $usertype);
-
-        header("Location: ../admin_user_register.php?signup=success");
+        if ($usertype == 'admin')
+        {
+            createUser($pdo, $username, $pwd, $email, $usertype);
+            createAdminAccount($pdo, $username);
+            header("Location: ../admin_user_register.php?signup=success");
+        }
+        else if ($usertype == 'pharmacist')
+        {
+            $_SESSION["create_username"] = $username;
+            $_SESSION["create_pwd"] = $pwd;
+            $_SESSION["create_email"] = $email;
+            header("Location: ../admin_register_pharm.php");
+        }
+        else if ($usertype == 'patient')
+        {
+            $_SESSION["create_username"] = $username;
+            $_SESSION["create_pwd"] = $pwd;
+            $_SESSION["create_email"] = $email;
+            header("Location: ../admin_register_patient.php");
+        }
+        else if ($usertype == 'sales')
+        {
+            $_SESSION["create_username"] = $username;
+            $_SESSION["create_pwd"] = $pwd;
+            $_SESSION["create_email"] = $email;
+            header("Location: ../admin_register_sales.php");
+        }
+        else if ($usertype == 'supplier')
+        {
+            $_SESSION["create_username"] = $username;
+            $_SESSION["create_pwd"] = $pwd;
+            $_SESSION["create_email"] = $email;
+            header("Location: ../admin_register_sup.php");
+        }
+        else
+        {
+            header("Location: ../admin_user_register.php?register=unidentified");
+        }
 
         $pdo = null;
         $stmt = null;

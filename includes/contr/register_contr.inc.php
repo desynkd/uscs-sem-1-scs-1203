@@ -27,10 +27,10 @@ function isEmailValid (string $email)
     }
 }
 
-function isUsernameTaken(object $pdo, string $username, string $usertype) {
+function isUsernameTaken(object $pdo, string $username) {
     //INPUT: php data object and string username and usertype
     //OUTPUT: True if email with usertype already in database
-    if (getUsername($pdo, $username, $usertype)) {
+    if (getUsername($pdo, $username)) {
         return true;
     }
     else{
@@ -54,4 +54,12 @@ function createUser(object $pdo, string $username, string $pwd, string $email, s
     //INPUT: php data object, username, password, email, usertype
     //PROCESS: Instruct model to create new user in sys_users
     setUser($pdo, $username, $pwd, $email, $usertype);
+}
+
+function createAdminAccount(object $pdo, string $username)
+{
+    //INPUT: php data object, username
+    //PROCESS: Instruct model to create new pharmacist in pharmacist
+    $userid = getUserId($pdo, $username);
+    setAccount($pdo, (string)$userid, NULL, NULL, NULL);
 }

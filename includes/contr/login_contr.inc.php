@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-function isInputEmpty(string $email, string $pwd)
+function isInputEmpty(string $username, string $pwd)
 {
-    //INPUT : Email and pwd variables
+    //INPUT : Username and pwd variables
     //OUTPUT : True if even one of variables is empty and false if else
-    if (empty($email) || empty($pwd))
+    if (empty($username) || empty($pwd))
     {
         return true;
     }
@@ -16,7 +16,7 @@ function isInputEmpty(string $email, string $pwd)
     }
 }
 
-function isEmailValid (string $email)
+/*function isEmailValid (string $email)
 {
     //INPUT : Email variable
     //OUTPUT : True if email is valid and false if else
@@ -28,9 +28,9 @@ function isEmailValid (string $email)
     {
         return false;
     }
-}
+}*/
 
-function isEmailCorrect(bool|array $result)
+function isUsernameCorrect(bool|array $result)
 {
     //INPUT: Array or bool result variable
     //OUTPUT: True if result bool isnt false and false if else
