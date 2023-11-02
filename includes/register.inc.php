@@ -60,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         if ($usertype == 'admin')
         {
             createUser($pdo, $username, $pwd, $email, $usertype);
+            createAdminAccount($pdo, $username);
             header("Location: ../admin_user_register.php?signup=success");
         }
         else if ($usertype = 'pharmacist')

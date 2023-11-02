@@ -1,6 +1,6 @@
 <?php 
 require_once 'includes/config_session.inc.php';
-require_once 'includes/view/register_view.inc.php';
+require_once 'includes/view/register_pharm_view.inc.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +14,8 @@ require_once 'includes/view/register_view.inc.php';
 <body>
 <div class='bold-line'></div>
     <div class='container'>
-    <div class='window-long'>
-        <div class='overlay-long'></div>
+    <div class='window' style='height: 920px;'>
+        <div class='overlay' style='height: 920px;'></div>
         <div class='content'>
             <div class='welcome'>Register New User</div>
             <form action="includes/register_pharm.inc.php" method="post">

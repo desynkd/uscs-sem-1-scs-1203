@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function isInputEmpty(string $firstname, string $address, string $contactno, string $regno, string $hiredate, string $termdate)
+function isPharmInputEmpty(string $firstname, string $address, string $contactno, string $regno, string $hiredate, string $termdate)
 {
     //INPUT: string firstname, lastname, address, contactno, regno, hiredate, termdate
     //OUTPUT: True if even one is empty or false if else
@@ -68,6 +68,6 @@ function createPharmacist(object $pdo, string $firstname, string $lastname, stri
     //INPUT: php data object, firstname, lastname, address, contactno, regno, hiredate, termdate, empstatus
     //PROCESS: Instruct model to create new pharmacist in pharmacist
     setStaff($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
-    $staffId = getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus);
-    setPharmacist($pdo,$staffId, $regno, $hiredate, $termdate);
+    $staffId = getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
+    setPharmacist($pdo, $staffId, $regno, $hiredate, $termdate);
 }

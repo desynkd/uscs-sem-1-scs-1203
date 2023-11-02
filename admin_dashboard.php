@@ -13,8 +13,8 @@ require_once 'includes/config_session.inc.php';
 <body>
 <div class='bold-line'></div>
     <div class='container'>
-    <div class='window-large'>
-        <div class='overlay-large'></div>
+    <div class='window'>
+        <div class='overlay'></div>
         <div class='content'>
             <?php
             if (isset($_SESSION["user_id"])) {

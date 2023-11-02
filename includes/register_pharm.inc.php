@@ -23,15 +23,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     try {
         
         require_once 'dbh.inc.php';
-        require_once 'model/register_model.inc.php';
         require_once 'model/register_pharm_model.inc.php';
+        require_once 'model/register_model.inc.php';
         require_once 'contr/register_contr.inc.php';
-        require_once 'model/register_pharm_contr.inc.php';
+        require_once 'contr/register_pharm_contr.inc.php';
 
         //ERROR HANDLES
         $errors = [];
 
-        if (isInputEmpty($firstname, $address, $contactno, $regno, $hiredate, $termdate))
+        if (isPharmInputEmpty($firstname, $address, $contactno, $regno, $hiredate, $termdate))
         {
             $errors["empty_input"] = "Fill in all neccesary Fields!";
         }
@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         }
 
         createUser($pdo, $username, $pwd, $email, $usertype);
+        createPharmacist($pdo, $firstname, $lastname, $address, $contactno, $regno, $hiredate, $termdate, $empstatus);
 
         header("Location: ../admin_user_register.php?signup=success");
 

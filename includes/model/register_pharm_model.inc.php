@@ -8,36 +8,49 @@ function setStaff(object $pdo, string $firstname, string $lastname, string $addr
     //PROCESS: Create new staff memeber in staff
 
     $query = "INSERT INTO staff (fname, lname, address, contactNo, empStatus, pharmacyId) VALUES 
-    (:firstname, :lastname, :address, :contactNo,)";
+    (:firstname, :lastname, :staffaddress, :contactNo, :empstatus, :pharamcyid)";
     $stmt = $pdo->prepare($query);
 
     $stmt->bindParam(":firstname", $firstname);
     $stmt->bindParam(":lastname", $lastname);
-    $stmt->bindParam(":address", $address);
+    $stmt->bindParam(":staffaddress", $address);
     $stmt->bindParam(":contactno", $contactno);
-    $stmt->bindParam(":regno", $regno);
-    $stmt->bindParam(":hiredate", $hiredate);
-    $stmt->bindParam(":termdate", $termdate);
     $stmt->bindParam(":empstatus", $empstatus);
+    $stmt->bindParam(":pharmacyid", $pharmacyid);
     $stmt->execute();
 }
 
-function setPharmacist(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $regno, string $hiredate, string $termdate, string $empstatus)
-{
-    //INPUT: php data object, username, password, email, usertype
-    //PROCESS: Create new user in sys_users
+function getStaffId($pdo, string $firstname, string $lastname, string $address, string $contactno, string $empstatus, string $pharmacyid) {
+    //INPUT: php data object and string firstname, lastname, address, contactno, empstatus
+    //OUTPUT: staffid if present and bool false if not
 
-    $query = "INSERT INTO sys_users (username, usertype, pwd, email) VALUES 
-    (:username, :usertype, :pwd, :email)";
+    $query = "SELECT staffId FROM staff WHERE fname = :firstname AND AND lName = :lastname AND address = :useraddress AND contactNo = :contactno AND empStatus = :empstatus AND pharmacyId = :pharmacyid;";
     $stmt = $pdo->prepare($query);
 
     $stmt->bindParam(":firstname", $firstname);
     $stmt->bindParam(":lastname", $lastname);
-    $stmt->bindParam(":address", $address);
+    $stmt->bindParam(":useraddress", $address);
     $stmt->bindParam(":contactno", $contactno);
+    $stmt->bindParam(":empstatus", $empstatus);
+    $stmt->bindParam(":pharmacyid", $pharmacyid);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO :: FETCH_ASSOC);
+    return $result[0]['staffId'];
+}
+
+function setPharmacist(object $pdo, string $staffid, string $regno, string $hiredate, string $termdate)
+{
+    //INPUT: php data object, staffid, regno, hiredate, termdate
+    //PROCESS: Create new user in sys_users
+
+    $query = "INSERT INTO pharmacists (staffId, regNo, hireDate, terminationDate) VALUES 
+    (:staffid, :regno, :hiredate, :termdate)";
+    $stmt = $pdo->prepare($query);
+
+    $stmt->bindParam(":staffid", $staffid);
     $stmt->bindParam(":regno", $regno);
     $stmt->bindParam(":hiredate", $hiredate);
     $stmt->bindParam(":termdate", $termdate);
-    $stmt->bindParam(":empstatus", $empstatus);
     $stmt->execute();
 }

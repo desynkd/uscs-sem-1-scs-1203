@@ -55,3 +55,11 @@ function createUser(object $pdo, string $username, string $pwd, string $email, s
     //PROCESS: Instruct model to create new user in sys_users
     setUser($pdo, $username, $pwd, $email, $usertype);
 }
+
+function createAdminAccount(object $pdo, string $username)
+{
+    //INPUT: php data object, username
+    //PROCESS: Instruct model to create new pharmacist in pharmacist
+    $userid = getUserId($pdo, $username);
+    setAccount($pdo, (string)$userid, NULL, NULL, NULL);
+}
