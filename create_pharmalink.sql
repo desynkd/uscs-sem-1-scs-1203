@@ -271,6 +271,7 @@ SELECT id FROM sys_users WHERE username = 'useradmin';
 INSERT INTO pharmacies (name, location) VALUES
 ('Millenial Pharmacy', '123 Main Street');
 
+
 /*Sample data for the 'departments' table*/
 INSERT INTO departments (name, pharmacyId) VALUES
 ('Pharmacy Department', 1),

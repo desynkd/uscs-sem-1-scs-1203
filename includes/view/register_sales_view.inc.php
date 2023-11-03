@@ -37,8 +37,8 @@ function registerInput()
 
     echo '<label for="id_empstatus" class="input-label full-width" >User Type</label>';
     echo '<select name="empstatus" id="id_empstatus" class="input-select full-width" >';
-    echo '<option value="full">Full-Time</option>';
-    echo '<option value="part">Part-Time</option>';
+    echo '<option value="Full">Full</option>';
+    echo '<option value="Part">Part</option>';
     echo '</select>';
 }
 

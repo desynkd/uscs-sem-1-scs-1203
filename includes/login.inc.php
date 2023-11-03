@@ -66,6 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
         {
             header("Location: ../pharm_dashboard.php");
         } 
+        else if ( $_SESSION["user_type"] === 'supplier' )
+        {
+            header("Location: ../sup_dashboard.php");
+        }
         else
         {
             header("Location: ../index.php?login=success&usertype=undefined");
