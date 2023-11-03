@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $errors["username_used"] = "Username already taken!";
         }
         if (isEmailRegistered($pdo, $email, $usertype)) {
-            $errors["email_used"] = "Email already registered!";
+            $errors["email_used"] = "Email already registered for Role!";
         }
 
         if($errors)
