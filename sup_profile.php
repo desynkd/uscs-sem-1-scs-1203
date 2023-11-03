@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     try {
         require_once "includes/dbh.inc.php";
 
-        $query = "SELECT s.staffId AS 'Staff ID', p.pharmacistId AS 'Pharmacist ID', CONCAT(s.fName, ' ', s.lName) AS 'Full Name', s.address AS Address, s.contactNo AS 'Contact Number', s.empStatus AS 'Employee Status', p.regNo AS 'SPB Registration Number', p.hiredate AS 'SPB Hire Date', p.terminationDate AS 'SPB Termination Date' FROM pharmacists p INNER JOIN staff s ON p.staffId = s.staffId RIGHT JOIN sys_accounts a ON s.staffId = a.staffId WHERE a.id = :userid;";
+        $query = "SELECT s.supId AS 'Supplier ID', CONCAT(s.fName, ' ', s.lName) AS 'Full Name', s.address AS Address, s.contactNo AS 'Contact Number', s.regNo AS 'RA Registration Number' FROM suppliers s RIGHT JOIN sys_accounts a ON s.supId = a.supId WHERE a.id = :userid;";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":userid", $_SESSION["user_id"]);
         $stmt->execute();
@@ -38,10 +38,10 @@ else
 <div class='bold-line'></div>
     <div class='container'>
     <div class='window'>
-        <div class='overlay' style='Height: 620px;'></div>
-        <div class='content' style='Height: 620px;'>
+        <div class='overlay' style='Height: 560px;'></div>
+        <div class='content' style='Height: 560px;'>
         <?php
-                echo "<div class='welcome' style='margin-top: 25px;'>Pharmacist Profile</div>";
+                echo "<div class='welcome' style='margin-top: 25px;'>Supplier Profile</div>";
                 echo "<div class='subtitle'>User - " . $_SESSION["user_username"] . "</div>";
         ?>
 
@@ -60,8 +60,8 @@ else
             </table>
         </div>
 
-        <form action="pharm_dashboard.php" method="post">
-                <div style="padding: 5px 20px 10px;" ><button class='ghost-round full-width'>Return to Dashboard</button></div>
+        <form action="sup_dashboard.php" method="post">
+                <div style="padding: 20px 20px 10px;" ><button class='ghost-round full-width'>Return to Dashboard</button></div>
         </form>
     </div>
     </div>
