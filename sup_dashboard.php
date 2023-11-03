@@ -24,6 +24,9 @@ require_once 'includes/config_session.inc.php';
             <form action="sup_profile.php" method="post">
                 <div style="padding: 30px 10px 5px;" ><button class='ghost-round full-width'>View Profile</button></div>
             </form>
+            <form action="sup_products.php" method="post">
+                <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>View Products Supplied</button></div>
+            </form>
             <form action="includes/logout.inc.php" method="post">
                 <div style="padding: 5px 10px 10px;" ><button class='ghost-round full-width'>Logout</button></div>
             </form>
