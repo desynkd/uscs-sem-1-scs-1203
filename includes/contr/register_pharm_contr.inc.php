@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+function avalPharmacies(object $pdo)
+{
+    return getpharmacies($pdo);
+}
+
+
 function isPharmInputEmpty(string $firstname, string $address, string $contactno, string $regno, string $hiredate, string $termdate)
 {
     //INPUT: string firstname, lastname, address, contactno, regno, hiredate, termdate
@@ -63,12 +69,12 @@ function isDatePassed(string $inputDate)
     }
 }
 
-function createPharmacist(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $regno, string $hiredate, string $termdate, string $empstatus)
+function createPharmacist(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $regno, string $hiredate, string $termdate, string $empstatus, string $pharmacy)
 {
-    //INPUT: php data object, firstname, lastname, address, contactno, regno, hiredate, termdate, empstatus
+    //INPUT: php data object, firstname, lastname, address, contactno, regno, hiredate, termdate, empstatus, pharmacy
     //PROCESS: Instruct model to create new pharmacist in pharmacist
-    setStaff($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
-    $staffid = (string)getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
+    setStaff($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
+    $staffid = (string)getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
     setPharmacist($pdo, $staffid, $regno, $hiredate, $termdate);
     return $staffid;
 }

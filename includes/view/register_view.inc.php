@@ -79,4 +79,24 @@ function checkRegisterErrors()
         echo '</div>';
         echo '</label>';
     } 
+    else if (isset($_GET["deparload"]) && $_GET["deparload"] === "invalid" ) {
+        echo '<label>';
+        echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
+        echo '<div class="alert error">';
+        echo '<span class="alertClose">X</span>';
+        echo '<span class="alertText">Unable to load staff department';
+        echo '<br class="clear"/></span>';
+        echo '</div>';
+        echo '</label>';
+    } 
+    else if (isset($_GET["deparupdate"]) && $_GET["deparupdate"] === "fail" ) {
+        echo '<label>';
+        echo '<input type="checkbox" class="alertCheckbox" autocomplete="off" />';
+        echo '<div class="alert error">';
+        echo '<span class="alertClose">X</span>';
+        echo '<span class="alertText">Unable to update staff department';
+        echo '<br class="clear"/></span>';
+        echo '</div>';
+        echo '</label>';
+    } 
 }

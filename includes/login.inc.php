@@ -70,6 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
         {
             header("Location: ../sup_dashboard.php");
         }
+        else if ( $_SESSION["user_type"] === 'patient' )
+        {
+            header("Location: ../patient_dashboard.php");
+        }
         else
         {
             header("Location: ../index.php?login=success&usertype=undefined");

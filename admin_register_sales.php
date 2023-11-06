@@ -1,6 +1,28 @@
 <?php 
 require_once 'includes/config_session.inc.php';
 require_once 'includes/view/register_sales_view.inc.php';
+
+//include 'includes/register_sales.inc.php?action=load';
+if (isset($_GET['action']) && $_GET['action'] === "load")
+{
+    
+    try {
+        require_once 'includes/dbh.inc.php';
+        require_once 'includes/model/register_pharm_model.inc.php';
+        require_once 'includes/contr/register_pharm_contr.inc.php';
+
+        $pharmacies = avalPharmacies($pdo);
+        $_SESSION["pharmacies"] = $pharmacies;
+    
+        header("Location: admin_register_pharm.php?load=success");
+        $pdo = NULL;
+        $stmt = NULL;
+        die();
+
+    } catch (PDOException $e) {
+        die("Query failed: " . $e->getMessage());
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,9 +35,9 @@ require_once 'includes/view/register_sales_view.inc.php';
 </head>
 <body>
 <div class='bold-line'></div>
-    <div class='container'>
-    <div class='window' style='height: 700px;'>
-        <div class='overlay' style='height: 700px;'></div>
+    <div class='container' style="margin-top: 80px;">
+    <div class='window' style='height: 780px;'>
+        <div class='overlay' style='height: 780px;'></div>
         <div class='content'>
             <div class='welcome'>Register New Sales Associate</div>
             <form action="includes/register_sales.inc.php" method="post">

@@ -56,7 +56,7 @@ function displayRecords()
     else
     {             
         ?>
-        <div class="display-table-container">
+        <div class="display-table-container" style="max-height: 120px">
         <table class="display-table">
         <thead class="display-thead">
             <tr class="display-tr">

@@ -2,7 +2,7 @@
 
 require_once 'config_session.inc.php';
 
-if (!$_SESSION["user_type"] == 'admin')
+if (!($_SESSION["user_type"] == 'admin'))
 {
     header("Location: ../index.php?action=unauthorized");
     die();

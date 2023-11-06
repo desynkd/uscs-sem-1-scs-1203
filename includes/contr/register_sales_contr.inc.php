@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+function avalPharmacies(object $pdo)
+{
+    return getpharmacies($pdo);
+}
+
+
 function isSalesInputEmpty(string $firstname, string $address, string $contactno)
 {
     //INPUT: string firstname, lastname, address, contactno
@@ -45,12 +51,12 @@ function isDatePassed(string $inputDate)
     }
 }
 
-function createSalesAssoc(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $empstatus)
+function createSalesAssoc(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $empstatus, string $pharmacy)
 {
-    //INPUT: php data object, firstname, lastname, address, contactno, empstatus
+    //INPUT: php data object, firstname, lastname, address, contactno, empstatus, pharmacy
     //PROCESS: Instruct model to create new pharmacist in pharmacist
-    setStaff($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
-    $staffid = (string)getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus, '1');
+    setStaff($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
+    $staffid = (string)getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
     setSalesAssoc($pdo, $staffid);
     return $staffid;
 }

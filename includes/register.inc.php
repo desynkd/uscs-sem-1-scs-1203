@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION["create_username"] = $username;
             $_SESSION["create_pwd"] = $pwd;
             $_SESSION["create_email"] = $email;
-            header("Location: ../admin_register_pharm.php");
+            header("Location: ../admin_register_pharm.php?action=load");
         }
         else if ($usertype == 'patient')
         {
