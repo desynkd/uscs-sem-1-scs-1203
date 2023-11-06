@@ -2,6 +2,20 @@
 
 declare(strict_types=1);
 
+function getPharmacies(object $pdo) {
+    //INPUT: php data object 
+    //OUTPUT: array of pharmacies if present and
+    //          bool false if not
+
+    $query = "SELECT pharmacyId AS id, name FROM pharmacies;";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+ 
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
+
+
 function setStaff(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $empstatus, string $pharmacyid)
 {
     //INPUT: php data object, firstname, lastname, address, contactno, empstatus, pharmacyid

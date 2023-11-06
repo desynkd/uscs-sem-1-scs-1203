@@ -12,7 +12,7 @@ CREATE TABLE sys_users (
 INSERT INTO sys_users (usertype, username, pwd, email) VALUES (
     'admin',
     'useradmin',
-    '$2y$12$/YqX9.5wZ27rrUt6YFFjWuxqTiu9jKfnWqqCwnXXwVXSQA.CMzKd6',
+    '$2y$12$/YqX9.5wZ27rrUt6YFFjWuxqTiu9jKfnWqqCwnXXwVXSQA.CMzKd6', /*admin*/
     'user@admin.com'
 );
 
@@ -48,7 +48,7 @@ CREATE TABLE staff (
 );
 
 CREATE TABLE department_staff (
-    depId INT(10) NOT NULL AUTO_INCREMENT,
+    depId INT(10) NOT NULL,
     staffId INT(10) NOT NULL,
     role VARCHAR(50) NOT NULL,
     PRIMARY KEY (depId, staffId),
@@ -269,7 +269,13 @@ INSERT INTO sys_accounts (id)
 SELECT id FROM sys_users WHERE username = 'useradmin';
 
 INSERT INTO pharmacies (name, location) VALUES
-('Millenial Pharmacy', '123 Main Street');
+('Millenial Pharmacy', '123 Main Street'), ('Captial Pharmacy', '234 Temple Trees');
+
+INSERT INTO departments (name, pharmacyId) VALUES
+('Adminstative', '1'), ('Prescription Dispensing', '1'), ('OTC Dispensing', '1');
+
+INSERT INTO departments (name, pharmacyId) VALUES
+('Adminstative', '2'), ('Dispensing', '2'), ('Welfare Services', '2');
 
 
 /*Sample data for the 'departments' table*/
