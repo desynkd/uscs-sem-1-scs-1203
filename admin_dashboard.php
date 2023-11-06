@@ -27,6 +27,9 @@ require_once 'includes/config_session.inc.php';
             <form action="admin_show_users.php?action=load" method="post">
                 <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>Manage Users</button></div>
             </form>
+            <form action="admin_show_entities.php?action=load" method="post">
+                <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>View Entities</button></div>
+            </form>
             <form action="includes/logout.inc.php" method="post">
                 <div style="padding: 5px 10px 10px;" ><button class='ghost-round full-width'>Logout</button></div>
             </form>
