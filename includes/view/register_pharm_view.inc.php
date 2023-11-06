@@ -60,15 +60,6 @@ function registerInput()
         foreach ($_SESSION["pharmacies"] as $pharmacy) {
             echo '<option value="' . (string)$pharmacy["id"] . '">' . $pharmacy["name"] . '</option>';
         }
-        /*$pharmacies = $_SESSION["pharmacies"];
-        $count = count($pharmacies);
-    
-        for ($i = 1; $i < $count; $i++) {
-            $pharmacy = $pharmacies[$i];
-            echo '<option value="' . (string)$pharmacy['id'] . '">' . (string)$pharmacy['name'] . '</option>';
-        }*/
-        //echo '<option value="' . (string)$_SESSION["pharmacies"][1]['id'] . '">' . (string)$_SESSION["pharmacies"][1]['name'] . '</option>';
-        //var_dump($_SESSION["pharmacies"]);
         echo '</select>';
     }
     else

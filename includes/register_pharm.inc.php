@@ -4,16 +4,16 @@ require_once 'config_session.inc.php';
 
 /*if (isset($_GET['action']) && $_GET['action'] === "load")
 {
-    //if page is loaded for the first time
+    
     try {
-        require_once 'dbh.inc.php';
-        require_once 'model/register_pharm_model.inc.php';
-        require_once 'contr/register_pharm_contr.inc.php';
+        require_once 'includes/dbh.inc.php';
+        require_once 'includes/model/register_pharm_model.inc.php';
+        require_once 'includes/contr/register_pharm_contr.inc.php';
 
         $pharmacies = avalPharmacies($pdo);
         $_SESSION["pharmacies"] = $pharmacies;
     
-        header("Location: ../admin_register_pharm.php?load=success");
+        header("Location: admin_register_pharm.php?load=success");
         $pdo = NULL;
         $stmt = NULL;
         die();
@@ -21,9 +21,7 @@ require_once 'config_session.inc.php';
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }
-
 }*/
-
 //If register is not accessed maliciously
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {

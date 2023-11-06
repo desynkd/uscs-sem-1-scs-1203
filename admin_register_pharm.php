@@ -2,9 +2,10 @@
 require_once 'includes/config_session.inc.php';
 require_once 'includes/view/register_pharm_view.inc.php';
 
+//include 'includes/register_pharm.inc.php?action=load';
 if (isset($_GET['action']) && $_GET['action'] === "load")
 {
-    //include 'includes/register_pharm.inc.php?action=load';
+    
     try {
         require_once 'includes/dbh.inc.php';
         require_once 'includes/model/register_pharm_model.inc.php';

@@ -71,7 +71,7 @@ function isDatePassed(string $inputDate)
 
 function createPharmacist(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $regno, string $hiredate, string $termdate, string $empstatus, string $pharmacy)
 {
-    //INPUT: php data object, firstname, lastname, address, contactno, regno, hiredate, termdate, empstatus
+    //INPUT: php data object, firstname, lastname, address, contactno, regno, hiredate, termdate, empstatus, pharmacy
     //PROCESS: Instruct model to create new pharmacist in pharmacist
     setStaff($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
     $staffid = (string)getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
