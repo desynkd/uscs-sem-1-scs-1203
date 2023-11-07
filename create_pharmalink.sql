@@ -387,7 +387,7 @@ INSERT INTO sys_users (usertype, username, pwd, email)
 VALUES 
     ('pharmacist',
     'Daham010',
-    '$2y$12$wOUtO9BnqIWauHbS3scHautgQokQxZZqpuImjqao1kupLO.UylcD.', /*Daham*/
+    '$2y$12$wOUtO9BnqIWauHbS3scHautgQokQxZZqpuImjqao1kupLO.UylcD.', /*daham*/
     'daham@gmail.com'),
     ('sales',
     'Thenuka011',
