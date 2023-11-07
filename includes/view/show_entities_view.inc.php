@@ -40,8 +40,7 @@ function filterInputs()
     }
     else
     {
-        header("Location: admin_dashboard.php?show=fail");
-        die();
+        echo '<label class="input-label" >Currently Displaying : Error</label>';
     }
 
     echo '</div>';

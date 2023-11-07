@@ -9,7 +9,7 @@ function getUsers(object $pdo, string $entity)
 
     if ($entity == 'admin')
     {
-        $query = "SELECT id AS 'User ID', username AS 'User Name', email AS 'E-Mail', createdAt AS 'Created Date' FROM sys_users WHERE userstatus = 1; AND usertype = 'admin'";
+        $query = "SELECT id AS 'User ID', username AS 'User Name', email AS 'E-Mail', createdAt AS 'Created Date' FROM sys_users WHERE userstatus = 1 AND usertype = 'admin';";
     }
     else if ($entity == 'pharmacist')
     {
