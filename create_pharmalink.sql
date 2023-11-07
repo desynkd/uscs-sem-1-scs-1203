@@ -270,8 +270,12 @@ SELECT id FROM sys_users WHERE username = 'useradmin';
 
 INSERT INTO pharmacies (name, location) 
 VALUES
-    ('Millenial Pharmacy', '123 Main Street'),
-    ('Captial Pharmacy', '234 Temple Trees');
+    ('Millenial Pharmacy', '123 Main Street');
+
+
+/*INSERT INTO pharmacies (name, location) 
+VALUES
+    ('Captial Pharmacy', '234 Temple Trees');*/
 
 INSERT INTO departments (name, pharmacyId) 
 VALUES
@@ -279,21 +283,21 @@ VALUES
     ('Prescription Dispensing', '1'),
     ('OTC Dispensing', '1');
 
-INSERT INTO departments (name, pharmacyId) 
+/*INSERT INTO departments (name, pharmacyId) 
 VALUES
     ('Adminstative', '2'),
     ('Dispensing', '2'),
-    ('Welfare Services', '2');
+    ('Welfare Services', '2');*/
 
 INSERT INTO staff (fName, lName, address, contactNo, empStatus, pharmacyId)
 VALUES 
     ('Daham', 'Samarasinghe', '145/1, Meewathura, Peradeniya', 0779999999, 'Full', '1'),
-    ('Thenuka', 'Thennakoon', '154/1, Meewathura, Peradeniya', 0759999999, 'Part', '2');
+    ('Thenuka', 'Thennakoon', '154/1, Meewathura, Peradeniya', 0759999999, 'Part', '1');
 
 INSERT INTO department_staff 
 VALUES 
     (2, 1, 'Dispenser'),
-    (4, 2, 'Accountant');
+    (1, 2, 'Accountant');
 
 INSERT INTO sales_associates (staffId) 
 VALUES 
