@@ -27,6 +27,9 @@ require_once 'includes/config_session.inc.php';
             <form action="pharm_dispensing.php" method="post">
                 <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>View Dispensing Records</button></div>
             </form>
+            <form action="pharm_diagnosis.php" method="post">
+                <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>View Diagnosis Records</button></div>
+            </form>
             <form action="includes/logout.inc.php" method="post">
                 <div style="padding: 5px 10px 10px;" ><button class='ghost-round full-width'>Logout</button></div>
             </form>

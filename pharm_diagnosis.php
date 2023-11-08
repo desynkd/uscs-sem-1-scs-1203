@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     try {
         require_once "includes/dbh.inc.php";
 
-        $query = "SELECT p.productId AS 'Product ID', p.Name, p.suppliedDate AS 'Supplied Date', p.quantity AS 'Quantity', p.unitCost AS 'Unit Cost', p.totalCost AS 'Total Cost' FROM products p LEFT JOIN sys_accounts a ON a.supId = p.supId WHERE a.id = :userid;";
+        $query = "SELECT d.diagnosisId AS 'Diagnosis ID', CONCAT(p.fName, ' ', p.lName) AS 'Patient Name', d.name AS 'Diagnosis Name', d.symptons AS 'Symptons', db. diagDateTime AS 'Diagnosed Date & Time' FROM patients p RIGHT JOIN diagnoses d ON p.patientId = d.patientId INNER JOIN diagnosis_by db ON d.diagnosisId = db.diagnosisId INNER JOIN pharmacists ph ON db.pharmacistId = ph.pharmacistId INNER JOIN sys_accounts a ON ph.staffId = a.staffId WHERE a.id = :userid;";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":userid", $_SESSION["user_id"]);
         $stmt->execute();
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 }
 else
 {
-    header("Location: ../sup_dashboard.php?action=unauthorized");
+    header("Location: ../pharm_dashboard.php?action=unauthorized");
 }
 
 function checkViewErrors()
@@ -57,7 +57,7 @@ function checkViewErrors()
         <div class='overlay-large'></div>
         <div class='content'>
         <?php
-                echo "<div class='welcome' style='margin-top: 25px;'>Products Supplied</div>";
+                echo "<div class='welcome' style='margin-top: 25px;'>Dispensing Records</div>";
                 echo "<div class='subtitle'>User - " . $_SESSION["user_username"] . "</div>";
 
         if (!empty($results)){?>
@@ -80,11 +80,11 @@ function checkViewErrors()
         <?php }else{
             checkViewErrors(); }?>
 
-        <form action="sup_dashboard.php" method="post" style="position: absolute; bottom: 0;">
-                <div style="padding: 20px 20px 10px;" ><button class='ghost-round full-width'>Return to Dashboard</button></div>
+        <form action="pharm_dashboard.php" method="post" style="position: absolute; bottom: 0;">
+                <div style="padding: 20px 20px 10px;" >
+                <button class='ghost-round full-width'>Return to Dashboard</button>
+                </div>
         </form>
-
-
     </div>
     </div>
 </div>

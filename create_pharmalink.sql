@@ -387,14 +387,14 @@ INSERT INTO sys_users (usertype, username, pwd, email)
 VALUES 
     ('pharmacist',
     'Daham010',
-    '$2y$12$wOUtO9BnqIWauHbS3scHautgQokQxZZqpuImjqao1kupLO.UylcD.', /*daham*/
+    '$2y$12$aNiY5cevBfNpcwv1xg4XYOhdPkAhhckV1IMkZFSM9j1zKmSa2IXE.', /*Daham*/
     'daham@gmail.com'),
     ('sales',
     'Thenuka011',
     '$2y$12$I6Xcz46.AoHUUQetqZwf/eWtABLdK2VbZblD4cbl8imT1UHQAW8YS', /*Thenuka*/
     'thenuka@gmail.com'),
     ('patient',
-    'Thamidu012',
+    'Thamindu012',
     '$2y$12$ZG2txo0kdP5G1DL7Uqvp1urAyWMyM47rBZFtXDz6WaEDshaeueWde', /*Thamindu*/
     'thamindu@gmail.com'),
     ('supplier',
