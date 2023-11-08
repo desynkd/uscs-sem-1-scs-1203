@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     try {
         require_once "includes/dbh.inc.php";
 
-        $query = "SELECT p.productId AS 'Product ID', p.Name, p.suppliedDate AS 'Supplied Date', p.quantity AS 'Quantity', p.unitCost AS 'Unit Cost', p.totalCost AS 'Total Cost' FROM products p LEFT JOIN sys_accounts a ON a.supId = p.supId WHERE a.id = :userid;";
+        $query = "SELECT d.dispensingId AS 'Dispensing ID', d.dispDateTime AS 'Dispensed Date & Time', m.name AS 'Medication Name', o.quantity AS 'Dispensed Amount' FROM medications m RIGHT JOIN orders o ON m.medId = o.medId RIGHT JOIN dispensings d ON o.dispensingId = d.dispensingId INNER JOIN pharmacists p ON d.pharmacistId = p.pharmacistId INNER JOIN sys_accounts a ON p.staffId = a.staffId WHERE a.id = :userid;";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":userid", $_SESSION["user_id"]);
         $stmt->execute();
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 }
 else
 {
-    header("Location: ../sup_dashboard.php?action=unauthorized");
+    header("Location: ../pharm_dashboard.php?action=unauthorized");
 }
 
 function checkViewErrors()
@@ -57,7 +57,7 @@ function checkViewErrors()
         <div class='overlay-large'></div>
         <div class='content'>
         <?php
-                echo "<div class='welcome' style='margin-top: 25px;'>Products Supplied</div>";
+                echo "<div class='welcome' style='margin-top: 25px;'>Dispensing Records</div>";
                 echo "<div class='subtitle'>User - " . $_SESSION["user_username"] . "</div>";
 
         if (!empty($results)){?>
@@ -80,11 +80,9 @@ function checkViewErrors()
         <?php }else{
             checkViewErrors(); }?>
 
-        <form action="sup_dashboard.php" method="post" style="position: absolute; bottom: 0;">
+        <form action="pharm_dashboard.php" method="post" style="position: absolute; bottom: 0;">
                 <div style="padding: 20px 20px 10px;" ><button class='ghost-round full-width'>Return to Dashboard</button></div>
         </form>
-
-
     </div>
     </div>
 </div>

@@ -13,8 +13,8 @@ require_once 'includes/config_session.inc.php';
 <body>
 <div class='bold-line'></div>
     <div class='container'>
-    <div class='window'>
-        <div class='overlay'></div>
+    <div class='window' style='Height: 660px;'>
+        <div class='overlay' style='Height: 660px;'></div>
         <div class='content'>
             <?php
                 echo "<div class='welcome'>Hello, " . $_SESSION["user_username"] . "</div>";
@@ -26,6 +26,12 @@ require_once 'includes/config_session.inc.php';
             </form>
             <form action="patient_vitalsign.php" method="post">
                 <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>View Vital Sign Records</button></div>
+            </form>
+            <form action="patient_diagnosis.php" method="post">
+                <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>View Diagnosis Records</button></div>
+            </form>
+            <form action="patient_order.php" method="post">
+                <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>View Order Records</button></div>
             </form>
             <form action="includes/logout.inc.php" method="post">
                 <div style="padding: 5px 10px 10px;" ><button class='ghost-round full-width'>Logout</button></div>

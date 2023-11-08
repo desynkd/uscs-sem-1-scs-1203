@@ -61,7 +61,7 @@ function checkViewErrors()
                 echo "<div class='subtitle'>User - " . $_SESSION["user_username"] . "</div>";
 
         if (!empty($results)){?>
-        <div class="display-table-container">
+        <div class="display-table-container" style="max-height: 450px;">
             <table class="display-table">
             <thead class="display-thead">
                 <tr class="display-tr">
@@ -80,8 +80,10 @@ function checkViewErrors()
         <?php }else{
             checkViewErrors(); }?>
 
-        <form action="patient_dashboard.php" method="post">
-                <div style="padding: 20px 20px 10px;" ><button class='ghost-round full-width'>Return to Dashboard</button></div>
+        <form action="patient_dashboard.php" method="post" style="position: absolute; bottom: 0;">
+                <div style="padding: 20px 20px 10px;" >
+                <button class='ghost-round full-width'>Return to Dashboard</button>
+                </div>
         </form>
     </div>
     </div>

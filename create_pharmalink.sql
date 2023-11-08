@@ -39,7 +39,7 @@ CREATE TABLE staff (
     lName VARCHAR(50),
     address VARCHAR(255) NOT NULL,
     contactNo INT(10) NOT NULL,
-    empStatus VARCHAR(4) NOT NULL,/*FULL or PART*/
+    empStatus VARCHAR(4) NOT NULL,/*Full or Part*/
     pharmacyId INT(5) NOT NULL,
     PRIMARY KEY(staffId),
     CONSTRAINT FK_StaffPharmacy
@@ -135,15 +135,15 @@ CREATE TABLE diagnoses (
 
 CREATE TABLE diagnosis_by (
     diagnosisId INT(10) NOT NULL,
-    patientId INT(10) NOT NULL,
+    pharmacistId INT(10) NOT NULL,
     diagDateTime DATETIME NOT NULL,
-    PRIMARY KEY (diagnosisId, patientId),
+    PRIMARY KEY (diagnosisId, pharmacistId),
     CONSTRAINT FK_DiagByDiagnosis
     FOREIGN KEY (diagnosisId)
     REFERENCES diagnoses(diagnosisId),
-    CONSTRAINT FK_DiagByPatient
-    FOREIGN KEY (patientId)
-    REFERENCES patients(patientId)
+    CONSTRAINT FK_DiagByPharmacist
+    FOREIGN KEY (pharmacistId)
+    REFERENCES pharmacists(pharmacistId)
 );
 
 CREATE TABLE suppliers (
@@ -265,112 +265,146 @@ CREATE TABLE sys_accounts (
     REFERENCES patients(patientId)
 );
 
-INSERT INTO sys_accounts (id)
+INSERT INTO sys_accounts (id) 
 SELECT id FROM sys_users WHERE username = 'useradmin';
 
-INSERT INTO pharmacies (name, location) VALUES
-('Millenial Pharmacy', '123 Main Street'), ('Captial Pharmacy', '234 Temple Trees');
-
-INSERT INTO departments (name, pharmacyId) VALUES
-('Adminstative', '1'), ('Prescription Dispensing', '1'), ('OTC Dispensing', '1');
-
-INSERT INTO departments (name, pharmacyId) VALUES
-('Adminstative', '2'), ('Dispensing', '2'), ('Welfare Services', '2');
+INSERT INTO pharmacies (name, location) 
+VALUES
+    ('Millenial Pharmacy', '123 Main Street');
 
 
-/*Sample data for the 'departments' table*/
-INSERT INTO departments (name, pharmacyId) VALUES
-('Pharmacy Department', 1),
-('Laboratory Department', 1),
-('Pharmacy Department', 2),
-('Laboratory Department', 2);
+/*INSERT INTO pharmacies (name, location) 
+VALUES
+    ('Captial Pharmacy', '234 Temple Trees');*/
 
-/*Sample data for the 'staff' table*/
-INSERT INTO staff (contactNo, empStatus, fName, lName, address, pharmacyId) VALUES
-(1234567890, 'FULL', 'John', 'Doe', '456 Elm Street', 1),
-(9876543210, 'PART', 'Jane', 'Smith', '789 Oak Street', 2);
+INSERT INTO departments (name, pharmacyId) 
+VALUES
+    ('Adminstative', '1'),
+    ('Prescription Dispensing', '1'),
+    ('OTC Dispensing', '1');
 
-/*Sample data for the 'department_staff' table*/
-INSERT INTO department_staff (depId, staffId, role) VALUES
-(1, 1, 'Pharmacist'),
-(2, 2, 'Lab Technician');
+/*INSERT INTO departments (name, pharmacyId) 
+VALUES
+    ('Adminstative', '2'),
+    ('Dispensing', '2'),
+    ('Welfare Services', '2');*/
 
-/*Sample data for the 'sales_associates' table*/
-INSERT INTO sales_associates (staffId) VALUES
-(1),
-(2);
+INSERT INTO staff (fName, lName, address, contactNo, empStatus, pharmacyId)
+VALUES 
+    ('Daham', 'Samarasinghe', '145/1, Meewathura, Peradeniya', 0779999999, 'Full', '1'),
+    ('Thenuka', 'Thennakoon', '154/1, Meewathura, Peradeniya', 0759999999, 'Part', '1');
 
-/*Sample data for the 'ceos' table*/
-INSERT INTO ceos (associateNo, dateAssigned) VALUES
-(1, '2023-01-15'),
-(2, '2023-02-20');
+INSERT INTO department_staff 
+VALUES 
+    (2, 1, 'Dispenser'),
+    (1, 2, 'Accountant');
 
-/*Sample data for the 'pharmacists' table*/
-INSERT INTO pharmacists (staffId, regNo, hireDate, terminationDate) VALUES
-(1, 12345, '2020-05-10', NULL),
-(2, 54321, '2019-08-15', '2022-03-30');
+INSERT INTO sales_associates (staffId) 
+VALUES 
+    (2);
 
-/*Sample data for the 'chief_pharmacists' table*/
-INSERT INTO chief_pharmacists (pharmacistId, dateAssigned) VALUES
-(1, '2023-01-15');
+INSERT INTO ceos 
+VALUES 
+    (1, '2023-11-08');
 
-/*Sample data for the 'patients' table*/
-INSERT INTO patients (fName, lName, dob, contactNo, address) VALUES
-('Alice', 'Johnson', '1990-03-15', 987654321, '123 Pine Street'),
-('Bob', 'Smith', '1985-12-10', 123456789, '456 Maple Street');
+INSERT INTO pharmacists (staffId, regNo, hireDate, terminationDate) 
+VALUES 
+    (1, 1023, '2021-10-06', '2024-10-06');
 
-/*Sample data for the 'vital_signs' table*/
-INSERT INTO vital_signs (patientId, vitalDateTime, temperature, pulse, bloodPressure) VALUES
-(1, '2023-03-01 08:00:00', 98.6, 75, 120/80),
-(2, '2023-03-02 09:30:00', 99.2, 80, 130/70);
+INSERT INTO chief_pharmacists 
+VALUES 
+    (1, '2023-11-08');
 
-/*Sample data for the 'diagnoses' table*/
-INSERT INTO diagnoses (patientId, symptons, name) VALUES
-(1, 'Fever, Cough', 'Common Cold'),
-(2, 'Headache, Fatigue', 'Migraine');
+INSERT INTO patients (fName, lName, dob, contactNo, address) 
+VALUES 
+    ('Thamindu', 'Dassanayake', '2002-02-21', 0719999999, '541/1, Meewathura, Peradeniya');
 
-/*Sample data for the 'diagnosis_by' table*/
-INSERT INTO diagnosis_by (diagnosisId, patientId, diagDateTime) VALUES
-(1, 1, '2023-03-01 08:30:00'),
-(2, 2, '2023-03-02 10:00:00');
+INSERT INTO vital_signs (patientId, vitalDateTime, temperature, pulse, bloodPressure)
+VALUES
+    (1, '2023-01-01 08:00:00', 98, 80, 120),
+    (1, '2023-01-01 12:00:00', 99, 82, 122),
+    (1, '2023-01-01 16:00:00', 98, 78, 118);
 
-/*Sample data for the 'suppliers' table*/
-INSERT INTO suppliers (contactNo, address, regNo, fName, lName) VALUES
-(9876543210, '123 Supplier Street', 5678, 'Supplier', 'One'),
-(1234567890, '456 Supplier Avenue', 9876, 'Supplier', 'Two');
+INSERT INTO diagnoses (patientId, symptons, name)
+VALUES
+    (1, 'Fever, Cough', 'Common Cold'),
+    (1, 'Headache, Fatigue', 'Migraine'),
+    (1, 'Sore Throat, Difficulty Swallowing', 'Strep Throat');
 
-/*Sample data for the 'products' table*/
-INSERT INTO products (supId, Name, suppliedDate, quantity, unitCost, totalCost) VALUES
-(1, 'Medicine A', '2023-03-01', 100, 10, 1000),
-(2, 'Medicine B', '2023-03-02', 200, 15, 3000);
+INSERT INTO diagnosis_by (diagnosisId, pharmacistId, diagDateTime)
+VALUES
+    (1, 1, '2023-01-01 09:00:00'),
+    (2, 1, '2023-01-02 10:30:00'),
+    (3, 1, '2023-01-03 15:15:00');
 
-/*Sample data for the 'categories' table*/
-INSERT INTO categories (name, type) VALUES
-('Pain Relief', 'OTC'),
-('Antibiotics', 'Prescription');
+INSERT INTO suppliers (fName, lName, contactNo, address, regNo)
+VALUES
+    ('Thaqib', 'Akbar', 0729999999, '451/1, Meewathura, Peradeniya', '223398');
 
-/*Sample data for the 'shelves' table*/
-INSERT INTO shelves (location) VALUES
-('A1'),
-('B2');
+INSERT INTO products (supId, Name, suppliedDate, quantity, unitCost, totalCost)
+VALUES
+    (1, 'Aspirin', '2023-01-15', 100, 5, 500),
+    (1, 'Ibuprofen', '2023-02-10', 150, 4, 600),
+    (1, 'Lisinopril', '2023-03-05', 200, 6, 1200);
 
-/*Sample data for the 'medications' table*/
-INSERT INTO medications (productId, name, shelfId, categoryId) VALUES
-(1, 'Medicine A', 1, 1),
-(2, 'Medicine B', 2, 2);
+INSERT INTO categories (name, type)
+VALUES
+    ('Pain Relievers', 'OTC'),
+    ('Anti-Inflammatories', 'OTC'),
+    ('Hypertension Medications', 'Prescription');
 
-/*Sample data for the 'dispensings' table*/
-INSERT INTO dispensings (dispDateTime, pharmacistId) VALUES
-('2023-03-01 10:00:00', 1),
-('2023-03-02 11:30:00', 2);
+INSERT INTO shelves (location)
+VALUES
+    ('Shelf 1'),
+    ('Shelf 2'),
+    ('Shelf 3');
 
-/*Sample data for the 'orders' table*/
-INSERT INTO orders (medId, dispensingId, diagnosisId, patientId, quantity, totalCost) VALUES
-(1, 1, 1, 1, 10, 100),
-(2, 2, 2, 2, 20, 300);
+INSERT INTO medications (productId, name, shelfId, categoryId)
+VALUES
+    (1, 'Aspirin Tablets', 1, 1),
+    (2, 'Ibuprofen Tablets', 2, 2),
+    (3, 'Lisinopril Tablets', 3, 3);
 
-/*Sample data for the 'delivery_orders' table*/
-INSERT INTO delivery_orders (orderId, address, deliveryDate) VALUES
-(1, '123 Main Street', '2023-03-05'),
-(2, '456 Elm Street', '2023-03-06');
+INSERT INTO dispensings (dispDateTime, pharmacistId)
+VALUES
+    ('2023-01-15 09:30:00', 1),
+    ('2023-02-10 10:15:00', 1),
+    ('2023-03-05 11:00:00', 1);
 
+INSERT INTO orders (medId, dispensingId, diagnosisId, patientId, quantity, totalCost)
+VALUES
+    (1, 1, 1, 1, 50, 250),
+    (2, 2, 2, 1, 75, 300),
+    (3, 3, 3, 1, 100, 600);
+
+INSERT INTO delivery_orders (orderId, address, deliveryDate)
+VALUES
+    (1, '123 Elm Street, Cityville', '2023-01-20'),
+    (2, '456 Oak Avenue, Townsville', '2023-02-15'),
+    (3, '789 Maple Lane, Villagetown', '2023-03-10');
+
+INSERT INTO sys_users (usertype, username, pwd, email) 
+VALUES 
+    ('pharmacist',
+    'Daham010',
+    '$2y$12$aNiY5cevBfNpcwv1xg4XYOhdPkAhhckV1IMkZFSM9j1zKmSa2IXE.', /*Daham*/
+    'daham@gmail.com'),
+    ('sales',
+    'Thenuka011',
+    '$2y$12$I6Xcz46.AoHUUQetqZwf/eWtABLdK2VbZblD4cbl8imT1UHQAW8YS', /*Thenuka*/
+    'thenuka@gmail.com'),
+    ('patient',
+    'Thamindu012',
+    '$2y$12$ZG2txo0kdP5G1DL7Uqvp1urAyWMyM47rBZFtXDz6WaEDshaeueWde', /*Thamindu*/
+    'thamindu@gmail.com'),
+    ('supplier',
+    'Thaqib014',
+    '$2y$12$sDw5aolGw1C64bpM80z81ufkObdbDxsiDk0rIEYE7Ijq0KSCPKUuG', /*Thaqib*/
+    'thaqib@gmail.com');
+
+INSERT INTO sys_accounts (id, staffId, supId, patientId) 
+VALUES
+    (2, 1, NULL, NULL),
+    (3, 2, NULL, NULL),
+    (4, NULL, NULL, 1),
+    (5, NULL, 1, NULL);
