@@ -8,15 +8,11 @@ function avalPharmacies(object $pdo)
 }
 
 
-function isPharmInputEmpty(string $firstname, string $address, string $contactno, string $regno, string $hiredate, string $termdate)
+function isTechInputEmpty(string $firstname, string $address, string $contactno)
 {
-    //INPUT: string firstname, lastname, address, contactno, regno, hiredate, termdate
+    //INPUT: string firstname, lastname, address, contactno
     //OUTPUT: True if even one is empty or false if else
     if (empty($firstname) || empty($address) || empty($contactno)) {
-        return true;
-    }
-    else if (empty($regno) || empty($hiredate) || empty($termdate))
-    {
         return true;
     }
     else
@@ -39,20 +35,6 @@ function isContactNoValid (string $contactNo)
     }
 }
 
-function isRegNoValid (string $regNo)
-{
-    //INPUT : RegNo variable
-    //OUTPUT : True if RegNo is valid and false if else
-    if (strlen($regNo) <= 10 ) 
-    {
-        if (is_numeric($regNo))
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
 function isDatePassed(string $inputDate)
 {
     //INPUT : Date string variable
@@ -69,20 +51,20 @@ function isDatePassed(string $inputDate)
     }
 }
 
-function createPharmacist(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $regno, string $hiredate, string $termdate, string $empstatus, string $pharmacy)
+function createPharmTech(object $pdo, string $firstname, string $lastname, string $address, string $contactno, string $empstatus, string $pharmacy)
 {
-    //INPUT: php data object, firstname, lastname, address, contactno, regno, hiredate, termdate, empstatus, pharmacy
-    //PROCESS: Instruct model to create new pharmacist in pharmacist
+    //INPUT: php data object, firstname, lastname, address, contactno, empstatus, pharmacy
+    //PROCESS: Instruct model to create new ptechnician in phamacy_technician
     setStaff($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
     $staffid = (string)getStaffId($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
-    setPharmacist($pdo, $staffid, $regno, $hiredate, $termdate);
+    setPharmTech($pdo, $staffid);
     return $staffid;
 }
 
-function createPharmAccount(object $pdo, string $username, string $staffid)
+function createTechAccount(object $pdo, string $username, string $staffid)
 {
     //INPUT: php data object, username, staffid
-    //PROCESS: Instruct model to create new pharmacist in pharmacist
+    //PROCESS: Instruct model to create new technician in sys_accounts
     $userid = (string)getUserId($pdo, $username);
     setAccount($pdo, $userid, $staffid, NULL, NULL);
 }

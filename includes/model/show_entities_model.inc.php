@@ -15,6 +15,10 @@ function getUsers(object $pdo, string $entity)
     {
         $query = "SELECT s.staffId AS 'Staff ID', p.pharmacistId AS 'Pharmacist ID', CONCAT(s.fName, ' ', s.lName) AS 'Full Name', s.address AS Address, s.contactNo AS 'Contact Number', s.empStatus AS 'Employee Status', p.regNo AS 'SPB Registration Number', p.hiredate AS 'SPB Hire Date', p.terminationDate AS 'SPB Termination Date' FROM pharmacists p INNER JOIN staff s ON p.staffId = s.staffId;";
     }
+    else if ($entity == 'tech')
+    {
+        $query = "SELECT s.staffId AS 'Staff ID', pt.techNo AS 'Technician No', CONCAT(s.fName, ' ', s.lName) AS 'Full Name', s.address AS Address, s.contactNo AS 'Contact Number', s.empStatus AS 'Employee Status' FROM pharmacy_technicians pt INNER JOIN staff s ON pt.staffId = s.staffId";
+    }
     else if ($entity == 'sales')
     {
         $query = "SELECT s.staffId AS 'Staff ID', sa.associateNo AS 'Associate No', CONCAT(s.fName, ' ', s.lName) AS 'Full Name', s.address AS Address, s.contactNo AS 'Contact Number', s.empStatus AS 'Employee Status' FROM sales_associates sa INNER JOIN staff s ON sa.staffId = s.staffId";

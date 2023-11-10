@@ -5,43 +5,29 @@ declare(strict_types=1);
 function filterInputs()
 {
     echo '<div style="float: left;">';
-    echo '<label for="id_entities" class="input-label full-width" >Display Type</label>';
-    echo '<select name="entity" id="id_entities" class="input-select full-width" >';
-    echo '<option value="admin">Admins</option>';
-    echo '<option value="pharmacist">Pharmacists</option>';
-    echo '<option value="sales">Sales Associates</option>';
-    echo '<option value="tech">Pharmacy Technicians</option>';
-    echo '<option value="patient">Patients</option>';
-    echo '<option value="supplier">Suppliers</option>';
+    echo '<label for="id_tables" class="input-label full-width" >Display Table</label>';
+    echo '<select name="table" id="id_tables" class="input-select full-width" >';
+    echo '<option value="Pharmacies">Pharmacies</option>';
+    echo '<option value="Departments">Departments</option>';
+    echo '<option value="Department Staff">Department Staff</option>';
+    echo '<option value="CEOs">CEOs</option>';
+    echo '<option value="Chief Pharmacists">Chief Pharmacists</option>';
+    echo '<option value="Vital Signs">Vital Signs</option>';
+    echo '<option value="Diagnoses">Diagnoses</option>';
+    echo '<option value="Diagnosis By">Diagnosis By</option>';
+    echo '<option value="Products">Products</option>';
+    echo '<option value="Categories">Categories</option>';
+    echo '<option value="Shelves">Shelves</option>';
+    echo '<option value="Medications">Medication</option>';
+    echo '<option value="Dispensings">Dispensings</option>';
+    echo '<option value="Orders">Order</option>';
+    echo '<option value="Delivery Orders">Delivery Orders</option>';
     echo '</select>';
     echo '<br>';
 
-    if (isset($_SESSION["update_entity"]))
+    if (isset($_SESSION["update_table"]))
     {
-        if ($_SESSION["update_entity"] == 'admin')
-        {
-            echo '<label class="input-label" >Currently Displaying : Admins</label>';
-        }
-        else if ($_SESSION["update_entity"] == 'pharmacist')
-        {
-            echo '<label class="input-label" >Currently Displaying : Pharmacists</label>';
-        }
-        else if ($_SESSION["update_entity"] == 'sales')
-        {
-            echo '<label class="input-label" >Currently Displaying : Sales Associates</label>';
-        }
-        else if ($_SESSION["update_entity"] == 'tech')
-        {
-            echo '<label class="input-label" >Currently Displaying : Pharmacy Technicians</label>';
-        }
-        else if ($_SESSION["update_entity"] == 'patient')
-        {
-            echo '<label class="input-label" >Currently Displaying : Patients</label>';
-        }
-        else if ($_SESSION["update_entity"] == 'supplier')
-        {
-            echo '<label class="input-label" >Currently Displaying : Suppliers</label>';
-        }
+        echo '<label class="input-label" >Currently Displaying : ' . $_SESSION["update_table"] . '</label>';
     }
     else
     {

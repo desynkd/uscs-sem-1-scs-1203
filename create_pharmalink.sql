@@ -60,6 +60,15 @@ CREATE TABLE department_staff (
     REFERENCES staff(staffId)
 );
 
+CREATE TABLE pharmacy_technicians (
+    TechNo INT(10) NOT NULL AUTO_INCREMENT,
+    staffId INT(10) NOT NULL,
+    PRIMARY KEY (TechNo),
+    CONSTRAINT FK_TechStaff
+    FOREIGN KEY (staffId)
+    REFERENCES staff(staffId)
+);
+
 CREATE TABLE sales_associates (
     associateNo INT(10) NOT NULL AUTO_INCREMENT,
     staffId INT(10) NOT NULL,
@@ -292,16 +301,22 @@ VALUES
 INSERT INTO staff (fName, lName, address, contactNo, empStatus, pharmacyId)
 VALUES 
     ('Daham', 'Samarasinghe', '145/1, Meewathura, Peradeniya', 0779999999, 'Full', '1'),
-    ('Thenuka', 'Thennakoon', '154/1, Meewathura, Peradeniya', 0759999999, 'Part', '1');
+    ('Thenuka', 'Thennakoon', '154/1, Meewathura, Peradeniya', 0759999999, 'Part', '1'),
+    ('Minura', 'Ekanayake', '134/1, Meewathura, Peradeniya', 0759999999, 'Full', '1');
 
 INSERT INTO department_staff 
 VALUES 
     (2, 1, 'Dispenser'),
-    (1, 2, 'Accountant');
+    (1, 2, 'Accountant'),
+    (1, 3, 'Technician');
 
 INSERT INTO sales_associates (staffId) 
 VALUES 
     (2);
+
+INSERT INTO pharmacy_technicians (staffId) 
+VALUES 
+    (3);
 
 INSERT INTO ceos 
 VALUES 
@@ -400,11 +415,16 @@ VALUES
     ('supplier',
     'Thaqib014',
     '$2y$12$sDw5aolGw1C64bpM80z81ufkObdbDxsiDk0rIEYE7Ijq0KSCPKUuG', /*Thaqib*/
-    'thaqib@gmail.com');
+    'thaqib@gmail.com'),
+    ('tech',
+    'Minura016',
+    '$2y$12$glTi/21BGutF.KcTtXYX5uM.QfaAlBiQSu6xVmHg6UWgO4DKADJbG', /*Minura*/
+    'minura@gmail.com');
 
 INSERT INTO sys_accounts (id, staffId, supId, patientId) 
 VALUES
     (2, 1, NULL, NULL),
     (3, 2, NULL, NULL),
     (4, NULL, NULL, 1),
-    (5, NULL, 1, NULL);
+    (5, NULL, 1, NULL),
+    (6, 3, NULL, NULL);
