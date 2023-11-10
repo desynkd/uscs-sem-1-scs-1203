@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION["create_username"] = $username;
             $_SESSION["create_pwd"] = $pwd;
             $_SESSION["create_email"] = $email;
-            header("Location: ../admin_register_sales.php");
+            header("Location: ../admin_register_sales.php?action=load");
         }
         else if ($usertype == 'supplier')
         {
@@ -90,6 +90,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION["create_pwd"] = $pwd;
             $_SESSION["create_email"] = $email;
             header("Location: ../admin_register_sup.php");
+        }
+        else if ($usertype == 'tech')
+        {
+            $_SESSION["create_username"] = $username;
+            $_SESSION["create_pwd"] = $pwd;
+            $_SESSION["create_email"] = $email;
+            header("Location: ../admin_register_tech.php?action=load");
         }
         else
         {

@@ -10,6 +10,7 @@ function filterInputs()
     echo '<option value="admin">Admins</option>';
     echo '<option value="pharmacist">Pharmacists</option>';
     echo '<option value="sales">Sales Associates</option>';
+    echo '<option value="tech">Pharmacy Technicians</option>';
     echo '<option value="patient">Patients</option>';
     echo '<option value="supplier">Suppliers</option>';
     echo '</select>';
@@ -28,6 +29,10 @@ function filterInputs()
         else if ($_SESSION["update_entity"] == 'sales')
         {
             echo '<label class="input-label" >Currently Displaying : Sales Associates</label>';
+        }
+        else if ($_SESSION["update_entity"] == 'tech')
+        {
+            echo '<label class="input-label" >Currently Displaying : Pharmacy Technicians</label>';
         }
         else if ($_SESSION["update_entity"] == 'patient')
         {

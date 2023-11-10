@@ -15,21 +15,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $username = $_SESSION["create_username"];
     $pwd = $_SESSION["create_pwd"];
     $email = $_SESSION["create_email"];
-    $usertype = "sales";
+    $usertype = "tech";
 
 
     try {
         
         require_once 'dbh.inc.php';
-        require_once 'model/register_sales_model.inc.php';
+        require_once 'model/register_tech_model.inc.php';
         require_once 'model/register_model.inc.php';
         require_once 'contr/register_contr.inc.php';
-        require_once 'contr/register_sales_contr.inc.php';
+        require_once 'contr/register_tech_contr.inc.php';
 
         //ERROR HANDLES
         $errors = [];
 
-        if (isSalesInputEmpty($firstname, $address, $contactno))
+        if (isTechInputEmpty($firstname, $address, $contactno))
         {
             $errors["empty_input"] = "Fill in all neccesary Fields!";
         }
@@ -51,17 +51,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             ];
             $_SESSION["register_data"] = $registerData;
 
-            header("Location: ../admin_register_sales.php?register=fail");
+            header("Location: ../admin_register_tech.php?register=fail");
             die();
         }
 
         createUser($pdo, $username, $pwd, $email, $usertype);
-        $staffid = createSalesAssoc($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
-        createSalesAccount($pdo, $username, $staffid);
+        $staffid = createPharmTech($pdo, $firstname, $lastname, $address, $contactno, $empstatus, $pharmacy);
+        createTechAccount($pdo, $username, $staffid);
 
         $_SESSION["create_staff"] = $staffid;
         $_SESSION["create_pharmacy"] = $pharmacy;
-        //header("Location: ../admin_user_register.php?signup=success");
         header("Location: ../admin_register_depar.php?action=load");
 
         

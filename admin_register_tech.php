@@ -1,6 +1,6 @@
 <?php 
 require_once 'includes/config_session.inc.php';
-require_once 'includes/view/register_sales_view.inc.php';
+require_once 'includes/view/register_tech_view.inc.php';
 
 //include 'includes/register_sales.inc.php?action=load';
 if (isset($_GET['action']) && $_GET['action'] === "load")
@@ -8,13 +8,13 @@ if (isset($_GET['action']) && $_GET['action'] === "load")
     
     try {
         require_once 'includes/dbh.inc.php';
-        require_once 'includes/model/register_sales_model.inc.php';
-        require_once 'includes/contr/register_sales_contr.inc.php';
+        require_once 'includes/model/register_tech_model.inc.php';
+        require_once 'includes/contr/register_tech_contr.inc.php';
 
         $pharmacies = avalPharmacies($pdo);
         $_SESSION["pharmacies"] = $pharmacies;
     
-        header("Location: admin_register_sales.php?load=success");
+        header("Location: admin_register_tech.php?load=success");
         $pdo = NULL;
         $stmt = NULL;
         die();
@@ -36,11 +36,11 @@ if (isset($_GET['action']) && $_GET['action'] === "load")
 <body>
 <div class='bold-line'></div>
     <div class='container' style="margin-top: 80px;">
-    <div class='window' style='height: 780px;'>
-        <div class='overlay' style='height: 780px;'></div>
+    <div class='window' style='height: 820px;'>
+        <div class='overlay' style='height: 820px;'></div>
         <div class='content'>
-            <div class='welcome'>Register New Sales Associate</div>
-            <form action="includes/register_sales.inc.php" method="post">
+            <div class='welcome'>Register Pharmacy Technician</div>
+            <form action="includes/register_tech.inc.php" method="post">
                 <div class='input-fields'>
                     <?php 
                         registerInput();

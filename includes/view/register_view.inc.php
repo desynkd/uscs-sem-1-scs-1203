@@ -25,7 +25,8 @@ function registerInput()
     echo '<option value="patient">Patient</option>';
     echo '<option value="supplier">Supplier</option>';
     echo '<option value="pharmacist">Pharmacist</option>';
-    echo '<option value="sales">Sales</option>';
+    echo '<option value="sales">Sales Associate</option>';
+    echo '<option value="tech">Pharmacy Technician</option>';
     echo '</select>';
 }
 
