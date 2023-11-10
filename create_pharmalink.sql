@@ -60,6 +60,15 @@ CREATE TABLE department_staff (
     REFERENCES staff(staffId)
 );
 
+CREATE TABLE pharmacy_technicians (
+    TechNo INT(10) NOT NULL AUTO_INCREMENT,
+    staffId INT(10) NOT NULL,
+    PRIMARY KEY (associateNo),
+    CONSTRAINT FK_SalesStaff
+    FOREIGN KEY (staffId)
+    REFERENCES staff(staffId)
+);
+
 CREATE TABLE sales_associates (
     associateNo INT(10) NOT NULL AUTO_INCREMENT,
     staffId INT(10) NOT NULL,

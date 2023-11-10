@@ -13,8 +13,8 @@ require_once 'includes/config_session.inc.php';
 <body>
 <div class='bold-line'></div>
     <div class='container'>
-    <div class='window'>
-        <div class='overlay'></div>
+    <div class='window' style="height: 660px;">
+        <div class='overlay' style="height: 660px;"></div>
         <div class='content'>
             <?php
             if (isset($_SESSION["user_id"])) {
@@ -29,6 +29,9 @@ require_once 'includes/config_session.inc.php';
             </form>
             <form action="admin_show_entities.php?action=load" method="post">
                 <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>View Entities</button></div>
+            </form>
+            <form action="admin_show_tables.php?action=load" method="post">
+                <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>View Tables</button></div>
             </form>
             <form action="includes/logout.inc.php" method="post">
                 <div style="padding: 5px 10px 10px;" ><button class='ghost-round full-width'>Logout</button></div>

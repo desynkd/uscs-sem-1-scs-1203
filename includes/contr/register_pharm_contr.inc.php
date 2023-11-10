@@ -45,12 +45,12 @@ function isRegNoValid (string $regNo)
     //OUTPUT : True if RegNo is valid and false if else
     if (strlen($regNo) <= 10 ) 
     {
-        return true;
+        if (is_numeric($regNo))
+        {
+            return true;
+        }
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 function isDatePassed(string $inputDate)
