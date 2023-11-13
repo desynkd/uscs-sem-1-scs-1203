@@ -12,9 +12,9 @@ require_once 'includes/config_session.inc.php';
 </head>
 <body>
 <div class='bold-line'></div>
-    <div class='container'>
-    <div class='window' style="height: 660px;">
-        <div class='overlay' style="height: 660px;"></div>
+    <div class='container' style='margin-top: 80px;'>
+    <div class='window' style="height: 720px;">
+        <div class='overlay' style="height: 720px;"></div>
         <div class='content'>
             <?php
             if (isset($_SESSION["user_id"])) {
@@ -23,6 +23,9 @@ require_once 'includes/config_session.inc.php';
             ?>
             <form action="admin_user_register.php" method="post">
                 <div style="padding: 25px 10px 5px;" ><button class='ghost-round full-width'>Register User</button></div>
+            </form>
+            <form action="admin_user_update.php" method="post">
+                <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>Update Users</button></div>
             </form>
             <form action="admin_show_users.php?action=load" method="post">
                 <div style="padding: 5px 10px 5px;" ><button class='ghost-round full-width'>Manage Users</button></div>
