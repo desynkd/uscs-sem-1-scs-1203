@@ -25,6 +25,8 @@ The following programming languages were used in this project:
 
 ## Usage
 
+Given below are some of the possible use cases.
+
 ### Admin creating new user
 
 1. **Log in as Admin**: Enter your admin credentials on to the login page
