@@ -45,3 +45,12 @@ The following programming languages were used in this project:
 
 6. **Confirmation**: The system displays a confirmation message and you can now return to admin dashboard
 ![Pharmalink Screenshots 1 (8)](https://github.com/desynkd/uscs-sem-1-scs-1203/assets/102913325/314ec9df-28a3-402b-a90e-51e53d387e8b)
+
+### Admin viewing user accounts in system
+
+1. **Navigate to Display Users Section**: Click on the "View Entities" tab in admin dashboard
+![Pharmalink Screenshots (2)](https://github.com/desynkd/uscs-sem-1-scs-1203/assets/102913325/6593bbb2-f357-430a-ae80-dc39d11f671a)
+
+2. **View User Account Details**: Once in view entites tab, you are able to see a list of all users in system. You are able to filter between active and inactive users and also able to activate a deactive user or deactivate a active user
+![Pharmalink Screenshots 1 (9)](https://github.com/desynkd/uscs-sem-1-scs-1203/assets/102913325/92c904c4-7bff-4143-a48d-96f337796aad)
+
