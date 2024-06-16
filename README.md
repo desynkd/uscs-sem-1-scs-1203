@@ -54,3 +54,14 @@ The following programming languages were used in this project:
 2. **View User Account Details**: Once in view entites tab, you are able to see a list of all users in system. You are able to filter between active and inactive users and also able to activate a deactive user or deactivate a active user
 ![Pharmalink Screenshots 1 (9)](https://github.com/desynkd/uscs-sem-1-scs-1203/assets/102913325/92c904c4-7bff-4143-a48d-96f337796aad)
 
+### Pharmacist viewing profile
+
+1. **Login in as Pharmacist**: Enter your pharmacist credentials on to the login page
+![Pharmalink Screenshots (1)](https://github.com/desynkd/uscs-sem-1-scs-1203/assets/102913325/f2ca8d33-27b3-4f12-a1ac-9feaf1d6d886)
+
+2. **Navigate to Profile Section**: Click on the "View Profile" tab in pharmacist dashboard
+![Pharmalink Screenshots 1 (11)](https://github.com/desynkd/uscs-sem-1-scs-1203/assets/102913325/2dc9d624-3a9b-4883-baa0-de3f0d22f92c)
+
+3. **View Profile**: The system displays your user information 
+![Pharmalink Screenshots 1 (12)](https://github.com/desynkd/uscs-sem-1-scs-1203/assets/102913325/7ee88b01-e45c-4622-bf90-d39d1d0fa359)
+
